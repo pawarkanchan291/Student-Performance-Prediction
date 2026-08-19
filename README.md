@@ -30,7 +30,6 @@ The system uses a trained **Machine Learning model** to analyze the student's ac
 * **Joblib**
 * **HTML5**
 * **CSS3**
-* **JavaScript**
 * **MySQL**
 * **XAMPP**
 
