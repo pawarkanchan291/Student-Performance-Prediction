@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Prediction History</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            background: #f4f7fb;
+
+            min-height: 100vh;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================== */
+
+        .navbar {
+
+            width: 100%;
+
+            background: #1e3a8a;
+
+            color: white;
+
+            padding: 18px 40px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            box-shadow:
+                0 3px 10px
+                rgba(0,0,0,0.15);
+        }
+
+
+        .logo {
+
+            font-size: 21px;
+
+            font-weight: bold;
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .nav-links a {
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            padding: 8px 12px;
+
+            border-radius: 6px;
+
+            transition: 0.3s;
+        }
+
+
+        .nav-links a:hover {
+
+            background: white;
+
+            color: #1e3a8a;
+        }
+
+
+        /* =========================
+           PAGE
+        ========================== */
+
+        .page {
+
+            padding: 40px 20px;
+        }
+
+
+        .container {
+
+            width: 100%;
+
+            max-width: 1250px;
+
+            margin: auto;
+        }
+
+
+        .title {
+
+            text-align: center;
+
+            color: #1e3a8a;
+
+            margin-bottom: 10px;
+        }
+
+
+        .description {
+
+            text-align: center;
+
+            color: #666;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* =========================
+           TABLE BOX
+        ========================== */
+
+        .table-box {
+
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 5px 25px
+                rgba(0,0,0,0.10);
+
+            overflow-x: auto;
+        }
+
+
+        table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+            min-width: 1100px;
+        }
+
+
+        th {
+
+            background: #1e3a8a;
+
+            color: white;
+
+            padding: 13px 10px;
+
+            text-align: center;
+
+            font-size: 14px;
+        }
+
+
+        td {
+
+            padding: 12px 10px;
+
+            border-bottom:
+                1px solid #e5e7eb;
+
+            text-align: center;
+
+            color: #333;
+
+            font-size: 14px;
+        }
+
+
+        tr:hover {
+
+            background: #f8fafc;
+        }
+
+
+        /* =========================
+           PERFORMANCE BADGES
+        ========================== */
+
+        .badge {
+
+            display: inline-block;
+
+            padding: 6px 12px;
+
+            border-radius: 20px;
+
+            font-weight: bold;
+
+            font-size: 12px;
+        }
+
+
+        .excellent {
+
+            background: #dcfce7;
+
+            color: #166534;
+        }
+
+
+        .good {
+
+            background: #dbeafe;
+
+            color: #1e40af;
+        }
+
+
+        .average {
+
+            background: #fef3c7;
+
+            color: #92400e;
+        }
+
+
+        .poor {
+
+            background: #fee2e2;
+
+            color: #991b1b;
+        }
+
+
+        /* =========================
+           SCORE
+        ========================== */
+
+        .score {
+
+            font-weight: bold;
+
+            color: #2563eb;
+        }
+
+
+        /* =========================
+           EMPTY MESSAGE
+        ========================== */
+
+        .empty {
+
+            text-align: center;
+
+            padding: 40px;
+
+            color: #666;
+
+            font-size: 17px;
+        }
+
+
+        /* =========================
+           BUTTONS
+        ========================== */
+
+        .buttons {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 12px;
+
+            margin-top: 25px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .btn {
+
+            display: inline-block;
+
+            padding: 11px 20px;
+
+            background: #2563eb;
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 7px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+
+        .btn:hover {
+
+            background: #1d4ed8;
+
+            transform: translateY(-2px);
+        }
+
+
+        .btn-dashboard {
+
+            background: #7c3aed;
+        }
+
+
+        .btn-dashboard:hover {
+
+            background: #6d28d9;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================== */
+
+        @media(max-width: 700px) {
+
+            .navbar {
+
+                padding: 15px 20px;
+
+                flex-direction: column;
+
+                gap: 12px;
+            }
+
+
+            .nav-links {
+
+                justify-content: center;
+
+                gap: 7px;
+            }
+
+
+            .nav-links a {
+
+                font-size: 13px;
+
+                padding: 6px 8px;
+            }
+
+
+            .table-box {
+
+                padding: 15px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================== -->
+
+<nav class="navbar">
+
+
+    <div class="logo">
+
+        🎓 Student Performance Predictor
+
+    </div>
+
+
+<a href="http://127.0.0.1:5000/">Home</a>
+
+<a href="http://127.0.0.1:5000/predict">
+    Predict
+</a>
+
+<a href="http://127.0.0.1:5001/history">
+    History
+</a>
+
+<a href="http://127.0.0.1:5002/dashboard">
+    Dashboard
+</a>
+
+</nav>
+
+
+
+<!-- =========================
+     PAGE
+========================== -->
+
+<section class="page">
+
+
+<div class="container">
+
+
+    <h1 class="title">
+
+        📋 Prediction History
+
+    </h1>
+
+
+    <p class="description">
+
+        All previously predicted student performance records
+
+    </p>
+
+
+
+    <div class="table-box">
+
+
+        {% if records %}
+
+
+        <table>
+
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Student ID</th>
+
+                    <th>Student Name</th>
+
+                    <th>Study Hours</th>
+
+                    <th>Attendance</th>
+
+                    <th>Sleep Hours</th>
+
+                    <th>Internet Usage</th>
+
+                    <th>Assignments</th>
+
+                    <th>Previous Score</th>
+
+                    <th>Predicted Score</th>
+
+                    <th>Performance</th>
+
+                    <th>Date</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+
+            {% for record in records %}
+
+
+                <tr>
+
+                    <td>
+
+                        {{ record.id }}
+
+                    </td>
+
+
+                    <td>
+
+                        {{ record.student_id }}
+
+                    </td>
+
+
+                    <td>
+
+                        {{ record.student_name }}
+
+                    </td>
+
+
+                    <td>
+
+                        {{ record.study_hours }}
+
+                    </td>
+
+
+                    <td>
+
+                        {{ record.attendance }}%
+
+                    </td>
+
+
+                    <td>
+
+                        {{ record.sleep_hours }}
+
+                    </td>
+
+
+                    <td>
+
+                        {{ record.internet_usage }}
+
+                    </td>
+
+
+                    <td>
+
+                        {{ record.assignments_completed }}
+
+                    </td>
+
+
+                    <td>
+
+                        {{ record.previous_score }}
+
+                    </td>
+
+
+                    <td class="score">
+
+                        {{ "%.2f"|format(record.predicted_score) }}
+
+                    </td>
+
+
+                    <td>
+
+
+                        {% if record.performance == "Excellent" %}
+
+                            <span class="badge excellent">
+
+                                Excellent
+
+                            </span>
+
+
+                        {% elif record.performance == "Good" %}
+
+                            <span class="badge good">
+
+                                Good
+
+                            </span>
+
+
+                        {% elif record.performance == "Average" %}
+
+                            <span class="badge average">
+
+                                Average
+
+                            </span>
+
+
+                        {% else %}
+
+                            <span class="badge poor">
+
+                                Poor
+
+                            </span>
+
+                        {% endif %}
+
+
+                    </td>
+
+
+                    <td>
+
+                        {{ record.created_at }}
+
+                    </td>
+
+                </tr>
+
+
+            {% endfor %}
+
+
+            </tbody>
+
+
+        </table>
+
+
+        {% else %}
+
+
+            <div class="empty">
+
+                📭 No prediction records found.
+
+                <br><br>
+
+                Make your first prediction.
+
+            </div>
+
+
+        {% endif %}
+
+
+    </div>
+
+
+
+    <!-- BUTTONS -->
+
+    <div class="buttons">
+
+<a href="http://127.0.0.1:5000/predict" class="btn">
+    🎓 New Prediction
+</a>
+
+    <a href="http://127.0.0.1:5002/dashboard"
+   class="btn btn-dashboard">
+    📊 Dashboard
+</a>
+
+
+    </div>
+
+
+</div>
+
+
+</section>
+
+
+</body>
+
+</html>

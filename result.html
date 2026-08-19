@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Prediction Result</title>
+
+
+    <!-- ==============================
+         INTERNAL CSS
+    =============================== -->
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+
+        body {
+            background: #f4f7fb;
+            min-height: 100vh;
+        }
+
+
+        /* ==============================
+           NAVBAR
+        =============================== */
+
+        .navbar {
+
+            width: 100%;
+
+            background: #1e3a8a;
+
+            color: white;
+
+            padding: 18px 40px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            box-shadow:
+                0 3px 10px
+                rgba(0,0,0,0.15);
+        }
+
+
+        .logo {
+
+            font-size: 21px;
+
+            font-weight: bold;
+        }
+
+
+        .logo span {
+            margin-left: 5px;
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            gap: 25px;
+        }
+
+
+        .nav-links a {
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            padding: 8px 12px;
+
+            border-radius: 6px;
+
+            transition: 0.3s;
+        }
+
+
+        .nav-links a:hover {
+
+            background: white;
+
+            color: #1e3a8a;
+        }
+
+
+        /* ==============================
+           RESULT PAGE
+        =============================== */
+
+        .result-page {
+
+            min-height: calc(100vh - 70px);
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 40px 20px;
+        }
+
+
+        .result-box {
+
+            width: 100%;
+
+            max-width: 650px;
+
+            background: white;
+
+            padding: 35px;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 5px 25px
+                rgba(0,0,0,0.12);
+
+            text-align: center;
+        }
+
+
+        /* ==============================
+           HEADING
+        =============================== */
+
+        .result-box h1 {
+
+            color: #1e3a8a;
+
+            margin-bottom: 12px;
+
+            font-size: 28px;
+        }
+
+
+        .result-text {
+
+            color: #666;
+
+            font-size: 16px;
+
+            margin-bottom: 25px;
+
+            line-height: 1.6;
+        }
+
+
+        /* ==============================
+           STUDENT DETAILS
+        =============================== */
+
+        .student-details {
+
+            background: #f8fafc;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 10px;
+
+            padding: 20px;
+
+            margin-bottom: 25px;
+
+            text-align: left;
+        }
+
+
+        .student-details p {
+
+            padding: 9px 0;
+
+            border-bottom: 1px solid #e5e7eb;
+
+            color: #333;
+
+            font-size: 15px;
+        }
+
+
+        .student-details p:last-child {
+
+            border-bottom: none;
+        }
+
+
+        .student-details strong {
+
+            color: #1e3a8a;
+
+        }
+
+
+        /* ==============================
+           SCORE
+        =============================== */
+
+        .score {
+
+            font-size: 52px;
+
+            font-weight: bold;
+
+            color: #2563eb;
+
+            margin-top: 10px;
+
+            margin-bottom: 5px;
+        }
+
+
+        .score-label {
+
+            color: #333;
+
+            font-size: 20px;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* ==============================
+           PERFORMANCE
+        =============================== */
+
+        .performance {
+
+            display: inline-block;
+
+            padding: 12px 30px;
+
+            background: #eff6ff;
+
+            color: #1e3a8a;
+
+            border: 2px solid #2563eb;
+
+            border-radius: 25px;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            margin-bottom: 20px;
+        }
+
+
+        .note {
+
+            color: #666;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* ==============================
+           BUTTONS
+        =============================== */
+
+        .buttons {
+
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 12px;
+
+            margin-top: 20px;
+        }
+
+
+        .btn {
+
+            display: inline-block;
+
+            padding: 11px 18px;
+
+            background: #2563eb;
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 7px;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+
+        .btn:hover {
+
+            background: #1d4ed8;
+
+            transform: translateY(-2px);
+        }
+
+
+        .btn-history {
+
+            background: #16a34a;
+        }
+
+
+        .btn-history:hover {
+
+            background: #15803d;
+        }
+
+
+        .btn-dashboard {
+
+            background: #7c3aed;
+        }
+
+
+        .btn-dashboard:hover {
+
+            background: #6d28d9;
+        }
+
+
+        /* ==============================
+           MOBILE RESPONSIVE
+        =============================== */
+
+        @media (max-width: 600px) {
+
+            .navbar {
+
+                padding: 15px 20px;
+
+                flex-direction: column;
+
+                gap: 12px;
+            }
+
+
+            .nav-links {
+
+                gap: 8px;
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+            }
+
+
+            .nav-links a {
+
+                font-size: 13px;
+
+                padding: 6px 8px;
+            }
+
+
+            .result-box {
+
+                padding: 25px 20px;
+            }
+
+
+            .result-box h1 {
+
+                font-size: 24px;
+            }
+
+
+            .score {
+
+                font-size: 42px;
+            }
+
+
+            .buttons {
+
+                flex-direction: column;
+            }
+
+
+            .btn {
+
+                width: 100%;
+
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ==============================
+         NAVIGATION
+    =============================== -->
+
+    <nav class="navbar">
+
+
+        <div class="logo">
+
+            🎓 <span>Student Performance</span>
+            Predictor
+
+        </div>
+
+
+        <div class="nav-links">
+
+            <!-- Home -->
+ <a href="http://127.0.0.1:5000/">Home</a>
+<a href="http://127.0.0.1:5000/predict">
+    Predict
+</a>
+<a href="http://127.0.0.1:5001/history">
+    History
+</a>
+
+<a href="http://127.0.0.1:5002/dashboard">
+    Dashboard
+</a>
+    </nav>
+
+
+
+    <!-- ==============================
+         RESULT PAGE
+    =============================== -->
+
+    <section class="result-page">
+
+
+        <div class="result-box">
+
+
+            <h1>
+                🎓 Student Performance Result
+            </h1>
+
+
+            <p class="result-text">
+
+                Based on the student details provided,
+                the predicted performance is:
+
+            </p>
+
+
+
+            <!-- ==============================
+                 STUDENT DETAILS
+            =============================== -->
+
+            <div class="student-details">
+
+
+                <p>
+
+                    <strong>
+                        Student ID:
+                    </strong>
+
+                    {{ student_id }}
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        Student Name:
+                    </strong>
+
+                    {{ student_name }}
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        Study Hours:
+                    </strong>
+
+                    {{ study_hours }} Hours
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        Attendance:
+                    </strong>
+
+                    {{ attendance }} %
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        Sleep Hours:
+                    </strong>
+
+                    {{ sleep_hours }} Hours
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        Internet Usage:
+                    </strong>
+
+                    {{ internet_usage }} Hours
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        Assignments Completed:
+                    </strong>
+
+                    {{ assignments_completed }}
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        Previous Score:
+                    </strong>
+
+                    {{ previous_score }}
+
+                </p>
+
+
+            </div>
+
+
+
+            <!-- ==============================
+                 PREDICTED SCORE
+            =============================== -->
+
+            <div class="score">
+
+                {{ "%.2f"|format(predicted_score) }}
+
+            </div>
+
+
+            <h2 class="score-label">
+
+                Predicted Performance Score
+
+            </h2>
+
+
+
+            <!-- ==============================
+                 PERFORMANCE
+            =============================== -->
+
+            <div class="performance">
+
+                {{ performance }}
+
+            </div>
+
+
+            <p class="note">
+
+                This is the predicted student performance
+                based on the provided academic details.
+
+            </p>
+
+
+
+            <!-- ==============================
+                 BUTTONS
+            =============================== -->
+
+            <div class="buttons">
+
+
+                <!--
+                    New Prediction
+                    Goes to prediction form
+                -->
+
+                <a href="http://127.0.0.1:5000/predict" class="btn">
+    ← New Prediction
+</a>
+
+
+                <!--
+                    History
+                -->
+
+              <a href="http://127.0.0.1:5001/history" class="btn btn-history">
+    📋 View History
+</a>
+
+
+                <!--
+                    Dashboard
+                -->
+
+                <a href="http://127.0.0.1:5002/dashboard" class="btn btn-dashboard">
+    📊 Dashboard
+</a>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+</body>
+
+</html>
