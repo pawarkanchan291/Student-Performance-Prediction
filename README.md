@@ -97,5 +97,5 @@ The main objective of this project is to use Machine Learning to analyze student
 
 **Student Performance Prediction using Machine Learning**
 
-This project demonstrates the practical implementation of **Machine Learning, Flask, MySQL, HTML, CSS, and JavaScript** in a real-world student performance prediction system.
+This project demonstrates the practical implementation of **Machine Learning, Flask, MySQL, HTML, CSS** in a real-world student performance prediction system.
 
