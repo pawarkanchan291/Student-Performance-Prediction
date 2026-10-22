@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Teacher Login</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#0f172a,#1e3a8a,#2563eb);
+}
+
+.login-container{
+    width:400px;
+    background:white;
+    padding:40px;
+    border-radius:15px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.25);
+}
+
+.icon{
+    text-align:center;
+    font-size:55px;
+    margin-bottom:10px;
+}
+
+h1{
+    text-align:center;
+    color:#0f172a;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#64748b;
+    margin-bottom:30px;
+}
+
+label{
+    display:block;
+    margin-bottom:7px;
+    color:#334155;
+    font-weight:bold;
+}
+
+input{
+    width:100%;
+    padding:13px;
+    border:1px solid #cbd5e1;
+    border-radius:8px;
+    margin-bottom:18px;
+    font-size:15px;
+}
+
+input:focus{
+    outline:none;
+    border-color:#2563eb;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:8px;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+.links{
+    text-align:center;
+    margin-top:20px;
+}
+
+.links a{
+    color:#2563eb;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.message{
+    background:#fee2e2;
+    color:#991b1b;
+    padding:10px;
+    border-radius:7px;
+    margin-bottom:15px;
+    text-align:center;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="login-container">
+
+    <div class="icon">👨‍🏫</div>
+
+    <h1>Teacher Login</h1>
+
+    <p class="subtitle">
+        Student Performance Prediction System
+    </p>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="message">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="http://127.0.0.1:5000/teacher-login">
+
+        <label>Teacher Email</label>
+
+        <input
+            type="email"
+            name="email"
+            placeholder="Enter your email"
+            required
+        >
+
+        <label>Password</label>
+
+        <input
+            type="password"
+            name="password"
+            placeholder="Enter your password"
+            required
+        >
+
+        <button type="submit">
+            Login as Teacher
+        </button>
+
+    </form>
+
+    <div class="links">
+
+        <p>
+            Are you a student?
+            <a href="http://127.0.0.1:5000/login">Student Login</a>
+        </p>
+
+        <br>
+
+        <a href="/">← Back to Home</a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

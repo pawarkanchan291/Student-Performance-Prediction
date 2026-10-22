@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Feedback Form</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    margin:0;
+    background:#f2f5f9;
+    padding:30px;
+}
+
+.container{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 8px 25px rgba(0,0,0,.1);
+}
+
+h1{
+    text-align:center;
+    color:#1e3a5f;
+}
+
+.subtitle{
+    text-align:center;
+    color:#666;
+    margin-bottom:25px;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:7px;
+}
+
+input,textarea{
+    width:100%;
+    padding:11px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    font-size:15px;
+}
+
+textarea{
+    height:100px;
+    resize:vertical;
+}
+
+.rating{
+    display:flex;
+    gap:15px;
+}
+
+.rating label{
+    font-weight:normal;
+}
+
+.rating input{
+    width:auto;
+}
+
+.btn{
+    width:100%;
+    padding:13px;
+    background:#1e3a5f;
+    color:white;
+    border:none;
+    border-radius:6px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.btn:hover{
+    background:#152d4a;
+}
+
+.back{
+    display:block;
+    text-align:center;
+    margin-top:15px;
+    color:#1e3a5f;
+    text-decoration:none;
+}
+
+.message{
+    padding:12px;
+    margin-bottom:15px;
+    border-radius:8px;
+    text-align:center;
+    font-weight:bold;
+}
+
+.error{
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+.success{
+    background:#dcfce7;
+    color:#166534;
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+<h1>
+Feedback Form
+</h1>
+
+<p class="subtitle">
+Student Performance Prediction System
+</p>
+
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+
+{% if messages %}
+
+{% for category, message in messages %}
+
+<div class="message {{ category }}">
+{{ message }}
+</div>
+
+{% endfor %}
+
+{% endif %}
+
+{% endwith %}
+
+
+<form
+action="http://127.0.0.1:5000/feedback"
+method="POST">
+
+
+<div class="form-group">
+
+<label>Name</label>
+
+<input
+type="text"
+name="name"
+placeholder="Enter your name"
+required>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Email</label>
+
+<input
+type="email"
+name="email"
+placeholder="Enter your email"
+required>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Rate Our System</label>
+
+<div class="rating">
+
+<label>
+<input type="radio"
+name="rating"
+value="1"
+required>
+1
+</label>
+
+<label>
+<input type="radio"
+name="rating"
+value="2">
+2
+</label>
+
+<label>
+<input type="radio"
+name="rating"
+value="3">
+3
+</label>
+
+<label>
+<input type="radio"
+name="rating"
+value="4">
+4
+</label>
+
+<label>
+<input type="radio"
+name="rating"
+value="5">
+5
+</label>
+
+</div>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Your Feedback</label>
+
+<textarea
+name="feedback"
+placeholder="Write your feedback here..."
+required></textarea>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Suggestions</label>
+
+<textarea
+name="suggestion"
+placeholder="Any suggestions for improvement?"></textarea>
+
+</div>
+
+
+<button
+type="submit"
+class="btn">
+
+Submit Feedback
+
+</button>
+
+</form>
+
+
+<a
+href="http://127.0.0.1:5000/"
+class="back">
+
+← Back to Home
+
+</a>
+
+</div>
+
+</body>
+
+</html>
+

@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Student Performance Prediction</title>
+
+
+<style>
+
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+/* =========================
+   BODY
+========================= */
+
+body{
+
+    font-family:Arial, sans-serif;
+
+    background:#f4f8ff;
+
+    color:#172554;
+
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+nav{
+
+    height:86px;
+
+    background:#0b3b91;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 40px;
+
+    color:white;
+
+}
+
+
+/* LOGO */
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    font-size:27px;
+
+    font-weight:bold;
+
+}
+
+.logo-icon{
+
+    font-size:38px;
+
+}
+
+
+/* NAVIGATION */
+
+.nav-links{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:38px;
+
+}
+
+.nav-links a{
+
+    color:white;
+
+    text-decoration:none;
+
+    font-size:18px;
+
+    padding:12px 0;
+
+    position:relative;
+
+}
+
+.nav-links a:hover{
+
+    color:#dbeafe;
+
+}
+
+
+/* ACTIVE HOME */
+
+.nav-links .active::after{
+
+    content:"";
+
+    position:absolute;
+
+    bottom:-3px;
+
+    left:0;
+
+    width:100%;
+
+    height:3px;
+
+    background:white;
+
+    border-radius:5px;
+
+}
+
+
+/* LOGOUT BUTTON */
+
+.logout{
+
+    background:#ef4444;
+
+    padding:14px 20px !important;
+
+    border-radius:7px;
+
+}
+
+.logout:hover{
+
+    background:#dc2626;
+
+    color:white !important;
+
+}
+
+
+/* =========================
+   HERO SECTION
+========================= */
+
+.hero{
+
+    min-height:720px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:70px 8% 40px;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+
+/* BACKGROUND DECORATION */
+
+.hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:330px;
+
+    height:330px;
+
+    background:#dbeafe;
+
+    border-radius:50%;
+
+    top:-170px;
+
+    left:-120px;
+
+    opacity:.7;
+
+}
+
+.hero::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:300px;
+
+    height:300px;
+
+    background:#e0ecff;
+
+    border-radius:50%;
+
+    right:-130px;
+
+    top:80px;
+
+    opacity:.6;
+
+}
+
+
+/* =========================
+   LEFT CONTENT
+========================= */
+
+.hero-content{
+
+    width:48%;
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+
+.hero-content h1{
+
+    font-size:62px;
+
+    line-height:1.25;
+
+    color:#123f91;
+
+    margin-bottom:28px;
+
+    font-weight:700;
+
+}
+
+
+/* BLUE LINE */
+
+.title-line{
+
+    width:135px;
+
+    height:5px;
+
+    background:#2563eb;
+
+    border-radius:10px;
+
+    margin-bottom:35px;
+
+    position:relative;
+
+}
+
+.title-line::after{
+
+    content:"";
+
+    position:absolute;
+
+    right:-20px;
+
+    top:-2px;
+
+    width:10px;
+
+    height:10px;
+
+    background:#2563eb;
+
+    border-radius:50%;
+
+}
+
+
+/* DESCRIPTION */
+
+.hero-content p{
+
+    font-size:25px;
+
+    line-height:1.7;
+
+    color:#374151;
+
+    max-width:600px;
+
+    margin-bottom:35px;
+
+}
+
+
+/* =========================
+   START BUTTON
+========================= */
+
+.start-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    background:#1769e8;
+
+    color:white;
+
+    text-decoration:none;
+
+    font-size:23px;
+
+    font-weight:bold;
+
+    padding:20px 38px;
+
+    border-radius:9px;
+
+    box-shadow:0 8px 20px rgba(37,99,235,.25);
+
+    transition:.3s;
+
+}
+
+
+.start-btn:hover{
+
+    background:#1255c7;
+
+    transform:translateY(-3px);
+
+    box-shadow:0 12px 25px rgba(37,99,235,.35);
+
+}
+
+
+/* =========================
+   WELCOME
+========================= */
+
+.user{
+
+    margin-top:55px;
+
+    font-size:25px;
+
+    color:#334155;
+
+}
+
+.user strong{
+
+    color:#1357bd;
+
+}
+
+
+/* =========================
+   RIGHT ILLUSTRATION
+========================= */
+
+.hero-image{
+
+    width:47%;
+
+    min-height:450px;
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+
+/* MONITOR */
+
+.monitor{
+
+    width:620px;
+
+    height:370px;
+
+    background:white;
+
+    border:18px solid #103e89;
+
+    border-radius:18px;
+
+    box-shadow:0 15px 30px rgba(15,61,135,.15);
+
+    position:relative;
+
+}
+
+
+/* MONITOR SCREEN */
+
+.screen{
+
+    width:100%;
+
+    height:100%;
+
+    padding:25px;
+
+    position:relative;
+
+}
+
+
+/* SCREEN TITLE */
+
+.screen-title{
+
+    font-size:19px;
+
+    font-weight:bold;
+
+    color:#1e293b;
+
+    margin-bottom:25px;
+
+}
+
+
+/* =========================
+   SIMPLE GRAPH
+========================= */
+
+.graph{
+
+    width:65%;
+
+    height:220px;
+
+    border-left:2px solid #dbeafe;
+
+    border-bottom:2px solid #dbeafe;
+
+    position:relative;
+
+    background:
+    repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 43px,
+        #eef4fb 44px
+    );
+
+}
+
+
+/* GRAPH LINE */
+
+.graph-line{
+
+    position:absolute;
+
+    left:20px;
+
+    bottom:55px;
+
+    width:300px;
+
+    height:130px;
+
+    border-top:4px solid #2563eb;
+
+    transform:skewY(-20deg);
+
+}
+
+
+/* GRAPH POINTS */
+
+.point{
+
+    width:14px;
+
+    height:14px;
+
+    background:#2563eb;
+
+    border:3px solid #dbeafe;
+
+    border-radius:50%;
+
+    position:absolute;
+
+}
+
+
+.p1{
+
+    left:20px;
+
+    top:145px;
+
+}
+
+.p2{
+
+    left:75px;
+
+    top:105px;
+
+}
+
+.p3{
+
+    left:130px;
+
+    top:120px;
+
+}
+
+.p4{
+
+    left:185px;
+
+    top:65px;
+
+}
+
+.p5{
+
+    left:240px;
+
+    top:95px;
+
+}
+
+.p6{
+
+    left:295px;
+
+    top:45px;
+
+}
+
+.p7{
+
+    left:350px;
+
+    top:65px;
+
+}
+
+
+/* =========================
+   BAR CHART
+========================= */
+
+.bars{
+
+    position:absolute;
+
+    bottom:20px;
+
+    left:35px;
+
+    display:flex;
+
+    align-items:end;
+
+    gap:22px;
+
+}
+
+
+.bar{
+
+    width:30px;
+
+    border-radius:4px 4px 0 0;
+
+}
+
+
+.bar:nth-child(1){
+
+    height:55px;
+
+    background:#8ec5ff;
+
+}
+
+.bar:nth-child(2){
+
+    height:80px;
+
+    background:#36b7a5;
+
+}
+
+.bar:nth-child(3){
+
+    height:105px;
+
+    background:#ff7180;
+
+}
+
+.bar:nth-child(4){
+
+    height:72px;
+
+    background:#ffbf35;
+
+}
+
+.bar:nth-child(5){
+
+    height:125px;
+
+    background:#416dcc;
+
+}
+
+
+/* =========================
+   DONUT CHART
+========================= */
+
+.donut{
+
+    position:absolute;
+
+    right:30px;
+
+    top:70px;
+
+    width:120px;
+
+    height:120px;
+
+    border-radius:50%;
+
+    background:
+    conic-gradient(
+        #35b99b 0deg 110deg,
+        #ffb52e 110deg 205deg,
+        #f15b65 205deg 280deg,
+        #4387d8 280deg 360deg
+    );
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+
+.donut::after{
+
+    content:"";
+
+    width:62px;
+
+    height:62px;
+
+    background:white;
+
+    border-radius:50%;
+
+}
+
+
+/* =========================
+   MONITOR STAND
+========================= */
+
+.monitor-stand{
+
+    position:absolute;
+
+    width:170px;
+
+    height:25px;
+
+    background:#123f91;
+
+    bottom:35px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    border-radius:0 0 8px 8px;
+
+}
+
+
+.monitor-base{
+
+    position:absolute;
+
+    width:250px;
+
+    height:18px;
+
+    background:#0c3575;
+
+    bottom:18px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    border-radius:10px;
+
+}
+
+
+/* =========================
+   BOOKS
+========================= */
+
+.books{
+
+    position:absolute;
+
+    bottom:20px;
+
+    left:5px;
+
+    width:200px;
+
+}
+
+
+.book{
+
+    height:25px;
+
+    border-radius:5px;
+
+    margin-top:5px;
+
+    box-shadow:0 3px 5px rgba(0,0,0,.15);
+
+}
+
+
+.book1{
+
+    width:170px;
+
+    background:#2563eb;
+
+}
+
+.book2{
+
+    width:190px;
+
+    background:#ef4444;
+
+}
+
+.book3{
+
+    width:155px;
+
+    background:#f59e0b;
+
+}
+
+.book4{
+
+    width:180px;
+
+    background:#0ea5e9;
+
+}
+
+
+/* GRADUATION CAP */
+
+.cap{
+
+    position:absolute;
+
+    left:55px;
+
+    bottom:100px;
+
+    font-size:85px;
+
+    transform:rotate(-5deg);
+
+}
+
+
+/* =========================
+   PLANT
+========================= */
+
+.plant{
+
+    position:absolute;
+
+    right:-30px;
+
+    bottom:25px;
+
+    font-size:110px;
+
+}
+
+
+/* =========================
+   FEATURES
+========================= */
+
+.features{
+
+    width:92%;
+
+    margin:0 auto 40px;
+
+    background:white;
+
+    border-radius:15px;
+
+    box-shadow:0 6px 25px rgba(0,0,0,.08);
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    padding:28px 25px;
+
+}
+
+
+.feature{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    padding:10px 30px;
+
+    border-right:1px solid #e2e8f0;
+
+}
+
+
+.feature:last-child{
+
+    border-right:none;
+
+}
+
+
+/* FEATURE ICON */
+
+.feature-icon{
+
+    min-width:70px;
+
+    height:70px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:32px;
+
+}
+
+
+.blue{
+
+    background:#dbeafe;
+
+}
+
+.green{
+
+    background:#dcfce7;
+
+}
+
+.red{
+
+    background:#fee2e2;
+
+}
+
+.yellow{
+
+    background:#fef3c7;
+
+}
+
+
+.feature h3{
+
+    font-size:18px;
+
+    color:#172554;
+
+    margin-bottom:8px;
+
+}
+
+
+.feature p{
+
+    color:#475569;
+
+    font-size:15px;
+
+    line-height:1.5;
+
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1200px){
+
+.hero{
+
+    padding-left:5%;
+
+    padding-right:5%;
+
+}
+
+.hero-content h1{
+
+    font-size:48px;
+
+}
+
+.monitor{
+
+    width:500px;
+
+    height:320px;
+
+}
+
+.features{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+.feature{
+
+    border-right:none;
+
+    border-bottom:1px solid #e2e8f0;
+
+    padding:20px;
+
+}
+
+}
+
+
+@media(max-width:900px){
+
+nav{
+
+    height:auto;
+
+    padding:20px;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+.nav-links{
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+}
+
+.hero{
+
+    flex-direction:column;
+
+    text-align:center;
+
+    padding-top:60px;
+
+}
+
+.hero-content{
+
+    width:100%;
+
+}
+
+.hero-content h1{
+
+    font-size:45px;
+
+}
+
+.title-line{
+
+    margin-left:auto;
+
+    margin-right:auto;
+
+}
+
+.hero-content p{
+
+    margin-left:auto;
+
+    margin-right:auto;
+
+}
+
+.hero-image{
+
+    width:100%;
+
+    margin-top:60px;
+
+}
+
+.user{
+
+    margin-bottom:10px;
+
+}
+
+}
+
+
+@media(max-width:600px){
+
+.logo{
+
+    font-size:21px;
+
+}
+
+.nav-links a{
+
+    font-size:14px;
+
+}
+
+.hero-content h1{
+
+    font-size:36px;
+
+}
+
+.hero-content p{
+
+    font-size:18px;
+
+}
+
+.start-btn{
+
+    font-size:18px;
+
+    padding:16px 25px;
+
+}
+
+.monitor{
+
+    width:350px;
+
+    height:230px;
+
+    border-width:10px;
+
+}
+
+.screen{
+
+    padding:15px;
+
+}
+
+.screen-title{
+
+    font-size:13px;
+
+}
+
+.graph{
+
+    height:140px;
+
+}
+
+.donut{
+
+    width:75px;
+
+    height:75px;
+
+    right:15px;
+
+}
+
+.donut::after{
+
+    width:38px;
+
+    height:38px;
+
+}
+
+.features{
+
+    grid-template-columns:1fr;
+
+}
+
+.feature{
+
+    border-bottom:1px solid #e2e8f0;
+
+}
+
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+
+    text-align:center;
+
+    padding:25px;
+
+    color:#64748b;
+
+    font-size:14px;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav>
+
+
+<div class="logo">
+
+<span class="logo-icon">🎓</span>
+
+<span>Student Performance</span>
+
+</div>
+
+
+<div class="nav-links">
+
+
+<a href="http://127.0.0.1:5000/"
+   class="active">
+
+Home
+
+</a>
+
+
+<a href="http://127.0.0.1:5000/predict">
+
+Predict
+
+</a>
+
+
+<a href="http://127.0.0.1:5000/history">
+
+History
+
+</a>
+
+
+<a href="http://127.0.0.1:5000/dashboard">
+
+Dashboard
+
+</a>
+
+
+<a href="http://127.0.0.1:5000/feedback">
+
+Feedback
+
+</a>
+
+<a href="http://127.0.0.1:5000/about">
+About Us
+</a>
+<a href="http://127.0.0.1:5000/contact">
+    Contact Us
+</a>
+
+<a href="http://127.0.0.1:5000/logout"
+   class="logout">
+
+Logout
+
+</a>
+
+
+</div>
+
+</nav>
+
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+
+<!-- LEFT SIDE -->
+
+<div class="hero-content">
+
+
+<h1>
+
+Student Performance
+<br>
+
+Prediction
+
+</h1>
+
+
+<div class="title-line"></div>
+
+
+<p>
+
+Predict student academic performance
+using Machine Learning.
+
+</p>
+
+
+<a href="http://127.0.0.1:5000/predict"
+   class="start-btn">
+
+🎓
+
+Start Prediction
+
+</a>
+
+
+<div class="user">
+
+Welcome,
+
+<strong>{{ user_name }}</strong>
+
+👋
+
+</div>
+
+
+</div>
+
+
+
+<!-- RIGHT SIDE -->
+
+<div class="hero-image">
+
+
+<!-- MONITOR -->
+
+<div class="monitor">
+
+
+<div class="screen">
+
+
+<div class="screen-title">
+
+Performance Overview
+
+</div>
+
+
+<!-- GRAPH -->
+
+<div class="graph">
+
+
+<div class="point p1"></div>
+
+<div class="point p2"></div>
+
+<div class="point p3"></div>
+
+<div class="point p4"></div>
+
+<div class="point p5"></div>
+
+<div class="point p6"></div>
+
+<div class="point p7"></div>
+
+
+<div class="bars">
+
+<div class="bar"></div>
+
+<div class="bar"></div>
+
+<div class="bar"></div>
+
+<div class="bar"></div>
+
+<div class="bar"></div>
+
+</div>
+
+
+</div>
+
+
+<!-- DONUT -->
+
+<div class="donut"></div>
+
+
+</div>
+
+
+</div>
+
+
+<!-- MONITOR STAND -->
+
+<div class="monitor-stand"></div>
+
+<div class="monitor-base"></div>
+
+
+<!-- BOOKS -->
+
+<div class="books">
+
+<div class="book book1"></div>
+
+<div class="book book2"></div>
+
+<div class="book book3"></div>
+
+<div class="book book4"></div>
+
+</div>
+
+
+<!-- CAP -->
+
+<div class="cap">
+
+🎓
+
+</div>
+
+
+<!-- PLANT -->
+
+<div class="plant">
+
+🪴
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- =========================
+     FEATURES
+========================= -->
+
+<section class="features">
+
+
+<!-- FEATURE 1 -->
+
+<div class="feature">
+
+
+<div class="feature-icon blue">
+
+📈
+
+</div>
+
+
+<div>
+
+<h3>
+
+Accurate Prediction
+
+</h3>
+
+
+<p>
+
+Get accurate results using
+advanced ML models.
+
+</p>
+
+</div>
+
+
+</div>
+
+
+
+<!-- FEATURE 2 -->
+
+<div class="feature">
+
+
+<div class="feature-icon green">
+
+🛡️
+
+</div>
+
+
+<div>
+
+<h3>
+
+Secure & Private
+
+</h3>
+
+
+<p>
+
+Your data is safe and used
+only for predictions.
+
+</p>
+
+</div>
+
+
+</div>
+
+
+
+<!-- FEATURE 3 -->
+
+<div class="feature">
+
+
+<div class="feature-icon red">
+
+⏱️
+
+</div>
+
+
+<div>
+
+<h3>
+
+Instant Results
+
+</h3>
+
+
+<p>
+
+Predict performance in
+just a few seconds.
+
+</p>
+
+</div>
+
+
+</div>
+
+
+
+<!-- FEATURE 4 -->
+
+<div class="feature">
+
+
+<div class="feature-icon yellow">
+
+📊
+
+</div>
+
+
+<div>
+
+<h3>
+
+Detailed Insights
+
+</h3>
+
+
+<p>
+
+Get insights to improve
+student performance.
+
+</p>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+© 2026 Student Performance Prediction System
+
+</footer>
+
+
+</body>
+
+</html>

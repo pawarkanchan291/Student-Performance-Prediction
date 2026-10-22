@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Prediction Result</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f7fb;
+}
+
+nav{
+    background:#1e3a8a;
+    padding:18px 40px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-right:25px;
+    font-weight:bold;
+}
+
+.container{
+    max-width:600px;
+    margin:70px auto;
+    background:white;
+    padding:40px;
+    border-radius:18px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
+
+h1{
+    color:#1e3a8a;
+}
+
+.score{
+    font-size:50px;
+    font-weight:bold;
+    color:#2563eb;
+    margin:25px;
+}
+
+.performance{
+    font-size:25px;
+    font-weight:bold;
+    margin-bottom:30px;
+}
+
+.btn{
+    display:inline-block;
+    padding:13px 25px;
+    background:#2563eb;
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+    margin:5px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<nav>
+
+<a href="http://127.0.0.1:5000/">
+Home
+</a>
+
+<a href="http://127.0.0.1:5000/predict">
+Predict
+</a>
+
+<a href="http://127.0.0.1:5000/history">
+History
+</a>
+
+<a href="http://127.0.0.1:5000/dashboard">
+Dashboard
+</a>
+
+<a href="http://127.0.0.1:5000/feedback">
+Feedback
+</a>
+
+</nav>
+
+
+<div class="container">
+
+<h1>
+Prediction Result
+</h1>
+
+<h2>
+{{ student_name }}
+</h2>
+
+<p>
+Student ID: {{ student_id }}
+</p>
+
+
+<div class="score">
+
+{{ predicted_score }}
+
+</div>
+
+<p>
+Predicted Score
+</p>
+
+
+<div class="performance">
+
+{{ performance }}
+
+</div>
+
+
+<a
+href="http://127.0.0.1:5000/predict"
+class="btn">
+
+New Prediction
+
+</a>
+
+
+<a
+href="http://127.0.0.1:5000/history"
+class="btn">
+
+View History
+
+</a>
+<a
+href="http://127.0.0.1:5000/"
+class="btn">
+
+Home
+
+</a>
+
+</div>
+
+</body>
+
+</html>
+```

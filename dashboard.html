@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Student Performance Dashboard</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f5f7fb;
+    color:#1f2937;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:220px;
+    height:100vh;
+    background:#111827;
+    color:white;
+    padding:25px 15px;
+}
+
+.logo{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.logo h2{
+    font-size:18px;
+    line-height:1.4;
+}
+
+.logo span{
+    font-size:13px;
+    color:#cbd5e1;
+}
+
+.menu{
+    list-style:none;
+}
+
+.menu li{
+    margin:10px 0;
+}
+
+.menu a{
+    display:block;
+    padding:13px 15px;
+    color:#d1d5db;
+    text-decoration:none;
+    border-radius:7px;
+    font-size:15px;
+    transition:.3s;
+}
+
+.menu a:hover{
+    background:#2563eb;
+    color:white;
+}
+
+.menu .active{
+    background:#2563eb;
+    color:white;
+}
+
+.logout{
+    position:absolute;
+    bottom:25px;
+    left:15px;
+    right:15px;
+}
+
+
+/* MAIN CONTENT */
+
+.main{
+    margin-left:220px;
+    padding:35px;
+}
+
+
+/* HEADER */
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:35px;
+}
+
+.header h1{
+    font-size:28px;
+    color:#111827;
+}
+
+.date{
+    background:white;
+    padding:10px 15px;
+    border-radius:8px;
+    box-shadow:0 3px 10px rgba(0,0,0,.08);
+    color:#64748b;
+}
+
+
+/* CARDS */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.card{
+    background:white;
+    border-radius:10px;
+    padding:25px 10px;
+    text-align:center;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+}
+
+.icon{
+    width:45px;
+    height:45px;
+    margin:auto;
+    margin-bottom:12px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:22px;
+}
+
+.total .icon{
+    background:#dbeafe;
+    color:#2563eb;
+}
+
+.excellent .icon{
+    background:#dcfce7;
+    color:#16a34a;
+}
+
+.good .icon{
+    background:#fef3c7;
+    color:#d97706;
+}
+
+.average .icon{
+    background:#ede9fe;
+    color:#7c3aed;
+}
+
+.poor .icon{
+    background:#fee2e2;
+    color:#dc2626;
+}
+
+.card h2{
+    font-size:27px;
+    margin-bottom:8px;
+    color:#111827;
+}
+
+.card p{
+    font-size:13px;
+    font-weight:bold;
+    color:#475569;
+}
+
+
+/* CHART SECTION */
+
+.chart-area{
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:20px;
+}
+
+.chart-box{
+    background:white;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+.chart-box h3{
+    margin-bottom:25px;
+    font-size:17px;
+    color:#111827;
+}
+
+
+/* BAR CHART */
+
+.bar-chart{
+    height:250px;
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-around;
+    border-bottom:1px solid #d1d5db;
+    padding:0 20px;
+}
+
+.bar{
+    width:45px;
+    border-radius:6px 6px 0 0;
+    position:relative;
+}
+
+.bar span{
+    position:absolute;
+    top:-25px;
+    width:100%;
+    text-align:center;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.bar-label{
+    text-align:center;
+    margin-top:10px;
+    font-size:12px;
+    color:#64748b;
+}
+
+.bar1{
+    height:150px;
+    background:#22c55e;
+}
+
+.bar2{
+    height:190px;
+    background:#f59e0b;
+}
+
+.bar3{
+    height:130px;
+    background:#8b5cf6;
+}
+
+.bar4{
+    height:80px;
+    background:#ef4444;
+}
+
+
+/* DONUT CHART */
+
+.donut-area{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:30px;
+}
+
+.donut{
+    width:170px;
+    height:170px;
+    border-radius:50%;
+    background:
+        conic-gradient(
+            #22c55e 0deg 96deg,
+            #f59e0b 96deg 222deg,
+            #8b5cf6 222deg 309deg,
+            #ef4444 309deg 360deg
+        );
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.donut::after{
+    content:"";
+    width:90px;
+    height:90px;
+    background:white;
+    border-radius:50%;
+}
+
+.legend{
+    line-height:2;
+    font-size:13px;
+}
+
+.legend div{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.dot{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+}
+
+.green{
+    background:#22c55e;
+}
+
+.yellow{
+    background:#f59e0b;
+}
+
+.purple{
+    background:#8b5cf6;
+}
+
+.red{
+    background:#ef4444;
+}
+
+
+/* RESPONSIVE */
+
+@media(max-width:1100px){
+
+.cards{
+    grid-template-columns:repeat(3,1fr);
+}
+
+.chart-area{
+    grid-template-columns:1fr;
+}
+
+}
+
+@media(max-width:700px){
+
+.sidebar{
+    width:100%;
+    height:auto;
+    position:relative;
+}
+
+.logout{
+    position:relative;
+    bottom:auto;
+    left:auto;
+    right:auto;
+    margin-top:20px;
+}
+
+.main{
+    margin-left:0;
+}
+
+.cards{
+    grid-template-columns:1fr 1fr;
+}
+
+.header{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:15px;
+}
+
+}
+
+@media(max-width:450px){
+
+.cards{
+    grid-template-columns:1fr;
+}
+
+.main{
+    padding:20px;
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+    <div class="logo">
+
+        <h2>🎓 Student Performance</h2>
+
+        <span>Prediction System</span>
+
+    </div>
+
+
+    <ul class="menu">
+
+        <li>
+            <a href="http://127.0.0.1:5000/">
+                🏠 Home
+            </a>
+        </li>
+
+        <li>
+            <a href="http://127.0.0.1:5000/predict">
+                📊 Predict
+            </a>
+        </li>
+
+        <li>
+            <a href="http://127.0.0.1:5000/history">
+                📜 History
+            </a>
+        </li>
+
+        <li>
+            <a class="active"
+               href="http://127.0.0.1:5000/dashboard">
+                📈 Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a href="http://127.0.0.1:5000/feedback">
+                💬 Feedback
+            </a>
+        </li>
+
+    </ul>
+
+
+    <div class="logout">
+
+        <a href="http://127.0.0.1:5000/login"
+           class="menu a">
+
+            🚪 Logout
+
+        </a>
+
+    </div>
+
+</div>
+
+
+
+<!-- MAIN -->
+
+<div class="main">
+
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <h1>
+            Student Performance Dashboard
+        </h1>
+
+        <div class="date">
+            📅 01 September 2026
+        </div>
+
+    </div>
+
+
+
+    <!-- STATISTICS CARDS -->
+
+    <div class="cards">
+
+
+        <div class="card total">
+
+            <div class="icon">
+                📈
+            </div>
+
+            <h2>
+                {{ total }}
+            </h2>
+
+            <p>
+                Total Predictions
+            </p>
+
+        </div>
+
+
+
+        <div class="card excellent">
+
+            <div class="icon">
+                ⭐
+            </div>
+
+            <h2>
+                {{ excellent }}
+            </h2>
+
+            <p>
+                Excellent
+            </p>
+
+        </div>
+
+
+
+        <div class="card good">
+
+            <div class="icon">
+                👍
+            </div>
+
+            <h2>
+                {{ good }}
+            </h2>
+
+            <p>
+                Good
+            </p>
+
+        </div>
+
+
+
+        <div class="card average">
+
+            <div class="icon">
+                👥
+            </div>
+
+            <h2>
+                {{ average }}
+            </h2>
+
+            <p>
+                Average
+            </p>
+
+        </div>
+
+
+
+        <div class="card poor">
+
+            <div class="icon">
+                ☹
+            </div>
+
+            <h2>
+                {{ poor }}
+            </h2>
+
+            <p>
+                Poor
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- CHARTS -->
+
+    <div class="chart-area">
+
+
+        <!-- BAR CHART -->
+
+        <div class="chart-box">
+
+            <h3>
+                Performance Trend
+            </h3>
+
+
+            <div class="bar-chart">
+
+
+                <div>
+
+                    <div class="bar bar1">
+
+                        <span>
+                            {{ excellent }}
+                        </span>
+
+                    </div>
+
+                    <div class="bar-label">
+                        Excellent
+                    </div>
+
+                </div>
+
+
+
+                <div>
+
+                    <div class="bar bar2">
+
+                        <span>
+                            {{ good }}
+                        </span>
+
+                    </div>
+
+                    <div class="bar-label">
+                        Good
+                    </div>
+
+                </div>
+
+
+
+                <div>
+
+                    <div class="bar bar3">
+
+                        <span>
+                            {{ average }}
+                        </span>
+
+                    </div>
+
+                    <div class="bar-label">
+                        Average
+                    </div>
+
+                </div>
+
+
+
+                <div>
+
+                    <div class="bar bar4">
+
+                        <span>
+                            {{ poor }}
+                        </span>
+
+                    </div>
+
+                    <div class="bar-label">
+                        Poor
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- DONUT CHART -->
+
+        <div class="chart-box">
+
+            <h3>
+                Performance Distribution
+            </h3>
+
+
+            <div class="donut-area">
+
+
+                <div class="donut"></div>
+
+
+                <div class="legend">
+
+                    <div>
+                        <span class="dot green"></span>
+                        Excellent
+                    </div>
+
+                    <div>
+                        <span class="dot yellow"></span>
+                        Good
+                    </div>
+
+                    <div>
+                        <span class="dot purple"></span>
+                        Average
+                    </div>
+
+                    <div>
+                        <span class="dot red"></span>
+                        Poor
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

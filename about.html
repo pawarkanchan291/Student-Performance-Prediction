@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>About Us - Student Performance Prediction</title>
+
+
+<style>
+
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+/* =========================
+   BODY
+========================= */
+
+body{
+
+    font-family:Arial, sans-serif;
+
+    background:#f7faff;
+
+    color:#172554;
+
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+nav{
+
+    width:100%;
+
+    height:72px;
+
+    background:#063b91;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 30px;
+
+    color:white;
+
+}
+
+
+/* LOGO */
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+}
+
+.logo-icon{
+
+    font-size:30px;
+
+}
+
+
+/* NAV LINKS */
+
+.nav-links{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:30px;
+
+}
+
+
+.nav-links a{
+
+    color:white;
+
+    text-decoration:none;
+
+    font-size:16px;
+
+    padding:8px 0;
+
+    position:relative;
+
+}
+
+
+.nav-links a:hover{
+
+    color:#dbeafe;
+
+}
+
+
+/* ACTIVE ABOUT */
+
+.nav-links .active::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    right:0;
+
+    bottom:-8px;
+
+    height:3px;
+
+    background:white;
+
+    border-radius:5px;
+
+}
+
+
+/* LOGOUT */
+
+.logout{
+
+    border:1px solid white;
+
+    padding:9px 18px !important;
+
+    border-radius:7px;
+
+}
+
+
+/* =========================
+   ABOUT HERO
+========================= */
+
+.about-section{
+
+    width:90%;
+
+    max-width:1400px;
+
+    margin:50px auto;
+
+    display:grid;
+
+    grid-template-columns:1fr 1.15fr;
+
+    gap:50px;
+
+    align-items:center;
+
+}
+
+
+/* LEFT CONTENT */
+
+.about-content h1{
+
+    font-size:64px;
+
+    color:#102f72;
+
+    margin-bottom:25px;
+
+}
+
+
+/* BLUE LINE */
+
+.title-line{
+
+    width:100px;
+
+    height:5px;
+
+    background:#2563eb;
+
+    border-radius:5px;
+
+    margin-bottom:28px;
+
+    position:relative;
+
+}
+
+
+.title-line::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:9px;
+
+    height:9px;
+
+    background:#2563eb;
+
+    border-radius:50%;
+
+    right:-17px;
+
+    top:-2px;
+
+}
+
+
+.about-content p{
+
+    font-size:21px;
+
+    line-height:1.9;
+
+    color:#334155;
+
+    max-width:600px;
+
+}
+
+
+/* =========================
+   TEAM IMAGE
+========================= */
+
+.team-image{
+
+    width:100%;
+
+    height:330px;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    background:
+    linear-gradient(
+        135deg,
+        #dbeafe,
+        #eff6ff
+    );
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    box-shadow:0 8px 25px rgba(15,23,42,.10);
+
+}
+
+
+/*
+   This creates a simple illustration
+   without requiring an external image.
+*/
+
+.team-illustration{
+
+    text-align:center;
+
+}
+
+
+.team-illustration .people{
+
+    font-size:100px;
+
+    letter-spacing:15px;
+
+}
+
+
+.team-illustration p{
+
+    font-size:18px;
+
+    color:#1e40af;
+
+    font-weight:bold;
+
+    margin-top:10px;
+
+}
+
+
+/* =========================
+   INFORMATION CARDS
+========================= */
+
+.cards{
+
+    width:90%;
+
+    max-width:1400px;
+
+    margin:20px auto 45px;
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:25px;
+
+}
+
+
+.card{
+
+    background:white;
+
+    min-height:270px;
+
+    border-radius:15px;
+
+    padding:30px 25px;
+
+    text-align:center;
+
+    box-shadow:0 6px 20px rgba(0,0,0,.07);
+
+    transition:.3s;
+
+}
+
+
+.card:hover{
+
+    transform:translateY(-7px);
+
+    box-shadow:0 12px 25px rgba(37,99,235,.15);
+
+}
+
+
+/* CARD ICON */
+
+.card-icon{
+
+    width:80px;
+
+    height:80px;
+
+    margin:0 auto 20px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:38px;
+
+}
+
+
+.mission{
+
+    background:#dbeafe;
+
+}
+
+
+.vision{
+
+    background:#dcfce7;
+
+}
+
+
+.team{
+
+    background:#ffedd5;
+
+}
+
+
+.values{
+
+    background:#ede9fe;
+
+}
+
+
+.card h2{
+
+    color:#111f50;
+
+    font-size:21px;
+
+    margin-bottom:15px;
+
+}
+
+
+.card p{
+
+    color:#475569;
+
+    font-size:16px;
+
+    line-height:1.8;
+
+}
+
+
+/* =========================
+   STATISTICS
+========================= */
+
+.statistics{
+
+    width:90%;
+
+    max-width:1400px;
+
+    margin:0 auto 50px;
+
+    background:#eef5ff;
+
+    border-radius:15px;
+
+    padding:30px;
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    box-shadow:0 5px 15px rgba(37,99,235,.06);
+
+}
+
+
+.stat{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:18px;
+
+    border-right:1px solid #cbd5e1;
+
+}
+
+
+.stat:last-child{
+
+    border-right:none;
+
+}
+
+
+.stat-icon{
+
+    font-size:48px;
+
+}
+
+
+.stat h3{
+
+    font-size:32px;
+
+    color:#104ac0;
+
+    margin-bottom:5px;
+
+}
+
+
+.stat p{
+
+    font-size:15px;
+
+    color:#475569;
+
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+
+    background:#063b91;
+
+    color:white;
+
+    text-align:center;
+
+    padding:20px;
+
+    font-size:14px;
+
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1100px){
+
+.about-section{
+
+    grid-template-columns:1fr;
+
+    text-align:center;
+
+}
+
+.about-content p{
+
+    margin:auto;
+
+}
+
+.title-line{
+
+    margin-left:auto;
+
+    margin-right:auto;
+
+}
+
+.cards{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+.statistics{
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:25px;
+
+}
+
+.stat{
+
+    border-right:none;
+
+}
+
+}
+
+
+@media(max-width:750px){
+
+nav{
+
+    height:auto;
+
+    padding:18px;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+.nav-links{
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    gap:15px;
+
+}
+
+.about-section{
+
+    margin-top:35px;
+
+}
+
+.about-content h1{
+
+    font-size:45px;
+
+}
+
+.about-content p{
+
+    font-size:18px;
+
+}
+
+.cards{
+
+    grid-template-columns:1fr;
+
+}
+
+.statistics{
+
+    grid-template-columns:1fr;
+
+}
+
+.stat{
+
+    padding:15px;
+
+    border-bottom:1px solid #cbd5e1;
+
+}
+
+.stat:last-child{
+
+    border-bottom:none;
+
+}
+
+.team-image{
+
+    height:250px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVIGATION BAR
+========================= -->
+
+<nav>
+
+
+<div class="logo">
+
+<span class="logo-icon">🎓</span>
+
+<span>
+Student Performance Prediction
+</span>
+
+</div>
+
+
+<div class="nav-links">
+
+
+<a href="http://127.0.0.1:5000/">
+Home
+</a>
+
+
+<a href="http://127.0.0.1:5000/predict">
+Predict
+</a>
+
+
+<a href="http://127.0.0.1:5000/history">
+History
+</a>
+
+
+<a href="http://127.0.0.1:5000/dashboard">
+Dashboard
+</a>
+
+
+<a href="http://127.0.0.1:5000/feedback">
+Feedback
+</a>
+
+
+<a href="http://127.0.0.1:5000/about"
+   class="active">
+About Us
+</a>
+
+
+<a href="http://127.0.0.1:5000/logout"
+   class="logout">
+Logout
+</a>
+
+
+</div>
+
+</nav>
+
+
+
+<!-- =========================
+     ABOUT SECTION
+========================= -->
+
+<section class="about-section">
+
+
+<!-- LEFT -->
+
+<div class="about-content">
+
+
+<h1>
+About Us
+</h1>
+
+
+<div class="title-line"></div>
+
+
+<p>
+
+We believe data and technology can
+transform education. Our platform
+predicts student performance using
+machine learning techniques and helps
+stakeholders take timely actions for
+better results.
+
+</p>
+
+
+</div>
+
+
+
+<!-- RIGHT -->
+
+<div class="team-image">
+
+
+<div class="team-illustration">
+
+<div class="people">
+
+👨‍💻 👩‍💻 👨‍💻
+
+</div>
+
+<p>
+
+Technology & Education Team
+
+</p>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- =========================
+     CARDS
+========================= -->
+
+<section class="cards">
+
+
+<!-- MISSION -->
+
+<div class="card">
+
+
+<div class="card-icon mission">
+
+🎯
+
+</div>
+
+
+<h2>
+Our Mission
+</h2>
+
+
+<p>
+
+To enhance academic success by
+providing accurate performance
+predictions and meaningful
+student insights.
+
+</p>
+
+
+</div>
+
+
+
+<!-- VISION -->
+
+<div class="card">
+
+
+<div class="card-icon vision">
+
+👁️
+
+</div>
+
+
+<h2>
+Our Vision
+</h2>
+
+
+<p>
+
+A world where every student gets
+the support they need to achieve
+their academic goals.
+
+</p>
+
+
+</div>
+
+
+
+<!-- TEAM -->
+
+<div class="card">
+
+
+<div class="card-icon team">
+
+👥
+
+</div>
+
+
+<h2>
+Our Team
+</h2>
+
+
+<p>
+
+Educators, data scientists and
+developers working together to
+create better educational
+solutions.
+
+</p>
+
+
+</div>
+
+
+
+<!-- VALUES -->
+
+<div class="card">
+
+
+<div class="card-icon values">
+
+⭐
+
+</div>
+
+
+<h2>
+Our Values
+</h2>
+
+
+<p>
+
+Innovation, transparency,
+accuracy and a strong commitment
+to student success.
+
+</p>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- =========================
+     STATISTICS
+========================= -->
+
+<section class="statistics">
+
+
+<!-- STUDENTS -->
+
+<div class="stat">
+
+
+<div class="stat-icon">
+
+👥
+
+</div>
+
+
+<div>
+
+<h3>
+1000+
+</h3>
+
+<p>
+Students Analyzed
+</p>
+
+</div>
+
+
+</div>
+
+
+
+<!-- ACCURACY -->
+
+<div class="stat">
+
+
+<div class="stat-icon">
+
+📈
+
+</div>
+
+
+<div>
+
+<h3>
+95%
+</h3>
+
+<p>
+Prediction Accuracy
+</p>
+
+</div>
+
+
+</div>
+
+
+
+<!-- INSTITUTIONS -->
+
+<div class="stat">
+
+
+<div class="stat-icon">
+
+🏫
+
+</div>
+
+
+<div>
+
+<h3>
+50+
+</h3>
+
+<p>
+Institutions
+</p>
+
+</div>
+
+
+</div>
+
+
+
+<!-- AWARDS -->
+
+<div class="stat">
+
+
+<div class="stat-icon">
+
+🏆
+
+</div>
+
+
+<div>
+
+<h3>
+10+
+</h3>
+
+<p>
+Awards & Recognition
+</p>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+© 2026 Student Performance Prediction System
+
+</footer>
+
+
+</body>
+
+</html>

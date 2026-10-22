@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Prediction History</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f7fb;
+}
+
+nav{
+    background:#1e3a8a;
+    padding:18px 40px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-right:25px;
+    font-weight:bold;
+}
+
+nav a:hover{
+    text-decoration:underline;
+}
+
+.container{
+    width:95%;
+    margin:40px auto;
+}
+
+h1{
+    text-align:center;
+    color:#1e3a8a;
+    margin-bottom:30px;
+}
+
+.table-box{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    overflow-x:auto;
+    box-shadow:0 8px 25px rgba(0,0,0,.1);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:1200px;
+}
+
+th,td{
+    padding:12px;
+    border:1px solid #ddd;
+    text-align:center;
+}
+
+th{
+    background:#1e3a8a;
+    color:white;
+    white-space:nowrap;
+}
+
+td{
+    color:#333;
+}
+
+tr:nth-child(even){
+    background:#f8fafc;
+}
+
+tr:hover{
+    background:#eef4ff;
+}
+
+.no-records{
+    text-align:center;
+    color:#777;
+    font-size:16px;
+    padding:25px;
+}
+
+.score{
+    font-weight:bold;
+}
+
+.performance{
+    font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav>
+
+<a href="http://127.0.0.1:5000/">
+Home
+</a>
+
+<a href="http://127.0.0.1:5000/predict">
+Predict
+</a>
+
+<a href="http://127.0.0.1:5000/history">
+History
+</a>
+
+<a href="http://127.0.0.1:5000/dashboard">
+Dashboard
+</a>
+
+<a href="http://127.0.0.1:5000/feedback">
+Feedback
+</a>
+
+</nav>
+
+
+<div class="container">
+
+<h1>
+Prediction History
+</h1>
+
+
+<div class="table-box">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>ID</th>
+
+<th>Student ID</th>
+
+<th>Name</th>
+
+<th>Study Hours</th>
+
+<th>Attendance</th>
+
+<th>Sleep Hours</th>
+
+<th>Internet Usage</th>
+
+<th>Assignments</th>
+
+<th>Previous Score</th>
+
+<th>Predicted Score</th>
+
+<th>Performance</th>
+
+<th>Date</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+{% for record in records %}
+
+<tr>
+
+<td>
+{{ record.id }}
+</td>
+
+<td>
+{{ record.student_id }}
+</td>
+
+<td>
+{{ record.student_name }}
+</td>
+
+<td>
+{{ record.study_hours }}
+</td>
+
+<td>
+{{ record.attendance }}
+</td>
+
+<td>
+{{ record.sleep_hours }}
+</td>
+
+<td>
+{{ record.internet_usage }}
+</td>
+
+<td>
+{{ record.assignments_completed }}
+</td>
+
+<td>
+{{ record.previous_score }}
+</td>
+
+<td class="score">
+{{ record.predicted_score }}
+</td>
+
+<td class="performance">
+{{ record.performance }}
+</td>
+
+<td>
+{% if record.prediction_date %}
+    {{ record.prediction_date }}
+{% elif record.created_at %}
+    {{ record.created_at }}
+{% else %}
+    -
+{% endif %}
+</td>
+
+</tr>
+
+{% else %}
+
+<tr>
+
+<td colspan="12" class="no-records">
+No prediction history available.
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,1091 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Student Performance Prediction</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f5f8ff;
+            color: #14213d;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================== */
+
+        nav {
+            width: 100%;
+            height: 90px;
+
+            background: #06265f;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 50px;
+
+            color: white;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            font-size: 45px;
+        }
+
+        .logo-text h2 {
+            font-size: 24px;
+            margin-bottom: 3px;
+        }
+
+        .logo-text p {
+            font-size: 15px;
+            color: #dbe7ff;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+
+            padding: 12px 15px;
+
+            border-radius: 8px;
+
+            font-size: 16px;
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: white;
+            color: #06265f;
+        }
+
+
+        /* =========================
+           HERO SECTION
+        ========================== */
+
+        .hero {
+            min-height: 650px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 60px 7%;
+
+            gap: 50px;
+        }
+
+        .hero-content {
+            width: 50%;
+        }
+
+        .hero-content h1 {
+            font-size: 60px;
+
+            line-height: 1.15;
+
+            color: #10295b;
+
+            margin-bottom: 25px;
+        }
+
+        .hero-content h1 span {
+            color: #1464ff;
+        }
+
+        .hero-content p {
+            font-size: 19px;
+
+            line-height: 1.8;
+
+            color: #46536d;
+
+            max-width: 650px;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* =========================
+           FEATURES
+        ========================== */
+
+        .features {
+            margin-top: 20px;
+
+            margin-bottom: 30px;
+        }
+
+        .feature {
+            display: flex;
+
+            align-items: center;
+
+            margin: 13px 0;
+
+            font-size: 17px;
+
+            color: #18243c;
+        }
+
+        .check {
+            width: 25px;
+            height: 25px;
+
+            background: #1769ff;
+
+            color: white;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin-right: 12px;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           BUTTONS
+        ========================== */
+
+        .buttons {
+            display: flex;
+
+            gap: 18px;
+
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+
+            padding: 16px 30px;
+
+            border-radius: 9px;
+
+            text-decoration: none;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .primary-btn {
+            background: #1264ff;
+
+            color: white;
+
+            box-shadow:
+                0 8px 20px rgba(18,100,255,0.25);
+        }
+
+        .primary-btn:hover {
+            background: #084dcc;
+
+            transform: translateY(-3px);
+        }
+
+        .secondary-btn {
+            background: white;
+
+            color: #1264ff;
+
+            border: 2px solid #1264ff;
+        }
+
+        .secondary-btn:hover {
+            background: #1264ff;
+
+            color: white;
+
+            transform: translateY(-3px);
+        }
+
+
+        /* =========================
+           RIGHT ILLUSTRATION
+        ========================== */
+
+        .hero-image {
+            width: 50%;
+
+            min-height: 450px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            position: relative;
+        }
+
+        .circle {
+            width: 470px;
+            height: 470px;
+
+            border-radius: 50%;
+
+            background: #e3efff;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            position: relative;
+        }
+
+
+        /* =========================
+           LAPTOP
+        ========================== */
+
+        .laptop {
+            width: 390px;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+        .screen {
+            width: 350px;
+            height: 230px;
+
+            background: #172b4d;
+
+            border-radius: 15px 15px 5px 5px;
+
+            margin: auto;
+
+            padding: 13px;
+
+            box-shadow:
+                0 15px 25px rgba(0,0,0,0.25);
+        }
+
+        .screen-inner {
+            width: 100%;
+            height: 100%;
+
+            background: white;
+
+            border-radius: 7px;
+
+            padding: 18px;
+
+            position: relative;
+        }
+
+        .screen-title {
+            font-size: 14px;
+
+            font-weight: bold;
+
+            color: #14213d;
+
+            margin-bottom: 12px;
+        }
+
+        .predicted-score {
+            font-size: 34px;
+
+            font-weight: bold;
+
+            color: #13a86b;
+
+            margin-bottom: 5px;
+        }
+
+        .out-of {
+            color: #666;
+
+            font-size: 13px;
+        }
+
+        .excellent {
+            color: #13a86b;
+
+            font-weight: bold;
+
+            font-size: 17px;
+
+            margin-top: 15px;
+        }
+
+        .stars {
+            color: #f5a900;
+
+            font-size: 18px;
+
+            margin-top: 10px;
+        }
+
+
+        /* =========================
+           CHART
+        ========================== */
+
+        .chart {
+            position: absolute;
+
+            right: 15px;
+            top: 65px;
+
+            width: 100px;
+            height: 80px;
+
+            display: flex;
+
+            align-items: flex-end;
+
+            gap: 7px;
+        }
+
+        .bar {
+            width: 14px;
+
+            background: #2676ff;
+
+            border-radius: 4px 4px 0 0;
+        }
+
+        .bar1 {
+            height: 35px;
+        }
+
+        .bar2 {
+            height: 50px;
+        }
+
+        .bar3 {
+            height: 65px;
+        }
+
+        .bar4 {
+            height: 55px;
+        }
+
+        .bar5 {
+            height: 75px;
+        }
+
+
+        /* =========================
+           LAPTOP BASE
+        ========================== */
+
+        .base {
+            width: 410px;
+
+            height: 18px;
+
+            background: #a8c4e8;
+
+            margin-left: -10px;
+
+            border-radius: 0 0 15px 15px;
+
+            box-shadow:
+                0 10px 10px rgba(0,0,0,0.15);
+        }
+
+
+        /* =========================
+           BOOKS
+        ========================== */
+
+        .books {
+            position: absolute;
+
+            bottom: 55px;
+
+            right: -10px;
+
+            z-index: 3;
+        }
+
+        .book {
+            width: 150px;
+
+            height: 30px;
+
+            border-radius: 5px;
+
+            margin-top: 5px;
+
+            box-shadow:
+                0 5px 10px rgba(0,0,0,0.15);
+        }
+
+        .book-blue {
+            background: #1769ff;
+        }
+
+        .book-orange {
+            background: #f5a623;
+        }
+
+        .book-white {
+            background: #dce7f7;
+        }
+
+
+        /* =========================
+           PLANT
+        ========================== */
+
+        .plant {
+            position: absolute;
+
+            bottom: 50px;
+
+            left: 30px;
+
+            font-size: 75px;
+
+            z-index: 3;
+        }
+
+
+        /* =========================
+           BULB
+        ========================== */
+
+        .bulb {
+            position: absolute;
+
+            right: 25px;
+
+            top: 20px;
+
+            font-size: 65px;
+
+            z-index: 3;
+        }
+
+
+        /* =========================
+           GRADUATION CAP
+        ========================== */
+
+        .cap {
+            position: absolute;
+
+            left: 45px;
+
+            top: 45px;
+
+            font-size: 75px;
+
+            z-index: 3;
+        }
+
+
+        /* =========================
+           STATISTICS
+        ========================== */
+
+        .stats {
+            width: 88%;
+
+            margin: 0 auto 40px;
+
+            background: white;
+
+            border-radius: 20px;
+
+            padding: 25px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,0.08);
+        }
+
+        .stat {
+            text-align: center;
+
+            border-right: 1px solid #ddd;
+        }
+
+        .stat:last-child {
+            border-right: none;
+        }
+
+        .stat-icon {
+            font-size: 30px;
+
+            margin-bottom: 8px;
+        }
+
+        .stat h3 {
+            font-size: 25px;
+
+            color: #10295b;
+
+            margin-bottom: 5px;
+        }
+
+        .stat p {
+            color: #59657a;
+
+            font-size: 15px;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================== */
+
+        @media(max-width: 1000px) {
+
+            nav {
+                height: auto;
+
+                padding: 18px 25px;
+
+                flex-direction: column;
+
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+
+                justify-content: center;
+            }
+
+            .hero {
+                flex-direction: column;
+
+                text-align: center;
+
+                padding: 50px 25px;
+            }
+
+            .hero-content {
+                width: 100%;
+            }
+
+            .hero-content h1 {
+                font-size: 42px;
+            }
+
+            .hero-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .features {
+                text-align: left;
+
+                display: inline-block;
+            }
+
+            .hero-image {
+                width: 100%;
+            }
+
+            .circle {
+                width: 390px;
+                height: 390px;
+            }
+
+            .stats {
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+                gap: 25px;
+            }
+
+            .stat {
+                border-right: none;
+            }
+        }
+
+
+        @media(max-width: 550px) {
+
+            .logo-text h2 {
+                font-size: 18px;
+            }
+
+            .logo-text p {
+                font-size: 12px;
+            }
+
+            .nav-links a {
+                font-size: 13px;
+
+                padding: 8px;
+            }
+
+            .hero-content h1 {
+                font-size: 35px;
+            }
+
+            .buttons {
+                flex-direction: column;
+
+                align-items: center;
+            }
+
+            .btn {
+                width: 220px;
+            }
+
+            .circle {
+                width: 300px;
+                height: 300px;
+            }
+
+            .laptop {
+                transform: scale(0.7);
+            }
+
+            .plant,
+            .books,
+            .bulb,
+            .cap {
+                display: none;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <nav>
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            <div class="logo-text">
+
+                <h2>
+                    Student Performance
+                </h2>
+
+                <p>
+                    Prediction System
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="nav-links">
+
+            
+    </nav>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero">
+
+
+        <!-- LEFT -->
+
+        <div class="hero-content">
+
+
+            <h1>
+
+                Predict.
+                Analyze.
+
+                <span>
+                    Improve
+                </span>
+
+                Performance.
+
+            </h1>
+
+
+            <p>
+
+                Welcome to the Student Performance
+                Prediction System. This application
+                uses Machine Learning to predict student
+                examination performance based on
+                academic and personal factors.
+
+            </p>
+
+
+            <!-- FEATURES -->
+
+            <div class="features">
+
+
+                <div class="feature">
+
+                    <span class="check">
+                        ✓
+                    </span>
+
+                    Analyze student academic performance
+
+                </div>
+
+
+                <div class="feature">
+
+                    <span class="check">
+                        ✓
+                    </span>
+
+                    Predict expected examination score
+
+                </div>
+
+
+                <div class="feature">
+
+                    <span class="check">
+                        ✓
+                    </span>
+
+                    Get performance classification
+
+                </div>
+
+
+                <div class="feature">
+
+                    <span class="check">
+                        ✓
+                    </span>
+
+                    View prediction history
+
+                </div>
+
+
+                <div class="feature">
+
+                    <span class="check">
+                        ✓
+                    </span>
+
+                    Make data-driven academic decisions
+
+                </div>
+
+
+            </div>
+
+
+            <!-- BUTTONS -->
+
+            <div class="buttons">
+
+
+                <a
+                    href="http://127.0.0.1:5000/register"
+                    class="btn primary-btn">
+
+                    🚀 Get Started →
+
+                </a>
+
+
+                <a
+                    href="http://127.0.0.1:5000/login"
+                    class="btn secondary-btn">
+
+                    👤 Login
+
+                </a>
+                   <a
+                    href="http://127.0.0.1:5000/admin_login"
+                    class="btn secondary-btn">
+
+                    👤 Admin Login
+
+                </a>
+                      <a
+                    href="http://127.0.0.1:5000/teacher-login"
+                    class="btn secondary-btn">
+
+                    👤 Teacher Login
+
+                </a>
+
+            
+
+            </div>
+
+
+        </div>
+
+
+        <!-- RIGHT -->
+
+        <div class="hero-image">
+
+
+            <div class="circle">
+
+
+                <div class="cap">
+                    🎓
+                </div>
+
+
+                <div class="bulb">
+                    💡
+                </div>
+
+
+                <div class="plant">
+                    🪴
+                </div>
+
+
+                <!-- LAPTOP -->
+
+                <div class="laptop">
+
+
+                    <div class="screen">
+
+
+                        <div class="screen-inner">
+
+
+                            <div class="screen-title">
+
+                                Predicted Score
+
+                            </div>
+
+
+                            <div class="predicted-score">
+
+                                85.6
+
+                            </div>
+
+
+                            <div class="out-of">
+
+                                /100
+
+                            </div>
+
+
+                            <div class="excellent">
+
+                                Performance:
+                                Excellent
+
+                            </div>
+
+
+                            <div class="stars">
+
+                                ★★★★★
+
+                            </div>
+
+
+                            <!-- CHART -->
+
+                            <div class="chart">
+
+                                <div class="bar bar1"></div>
+
+                                <div class="bar bar2"></div>
+
+                                <div class="bar bar3"></div>
+
+                                <div class="bar bar4"></div>
+
+                                <div class="bar bar5"></div>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="base"></div>
+
+
+                </div>
+
+
+                <!-- BOOKS -->
+
+                <div class="books">
+
+                    <div class="book book-blue"></div>
+
+                    <div class="book book-orange"></div>
+
+                    <div class="book book-white"></div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =========================
+         STATISTICS
+    ========================== -->
+
+    <section class="stats">
+
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                👥
+            </div>
+
+            <h3>
+                1000+
+            </h3>
+
+            <p>
+                Students Analyzed
+            </p>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                📈
+            </div>
+
+            <h3>
+                95%
+            </h3>
+
+            <p>
+                Prediction Accuracy
+            </p>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                🏆
+            </div>
+
+            <h3>
+                4
+            </h3>
+
+            <p>
+                Performance Levels
+            </p>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                🕐
+            </div>
+
+            <h3>
+                Real-time
+            </h3>
+
+            <p>
+                Prediction Results
+            </p>
+
+        </div>
+
+
+    </section>
+
+
+</body>
+
+</html>
+```

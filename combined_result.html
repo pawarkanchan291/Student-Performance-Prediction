@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Combined Performance Result</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#eef2ff,#f8fafc);
+    color:#1e293b;
+}
+
+/* NAVBAR */
+
+.navbar{
+    background:linear-gradient(135deg,#0f172a,#1e3a8a,#2563eb);
+    color:white;
+    padding:18px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:21px;
+    font-weight:bold;
+}
+
+.navbar a{
+    color:white;
+    text-decoration:none;
+    margin-left:18px;
+    font-size:14px;
+}
+
+/* CONTAINER */
+
+.container{
+    max-width:1000px;
+    margin:40px auto;
+    padding:20px;
+}
+
+.title{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.title h1{
+    color:#1e3a8a;
+    margin-bottom:8px;
+}
+
+.title p{
+    color:#64748b;
+}
+
+/* SCORE CARDS */
+
+.score-container{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+}
+
+.score-card{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 7px 25px rgba(0,0,0,0.08);
+}
+
+.score-card h2{
+    color:#334155;
+    margin-bottom:15px;
+}
+
+.score{
+    font-size:48px;
+    font-weight:bold;
+    color:#2563eb;
+}
+
+.student-card{
+    border-top:5px solid #2563eb;
+}
+
+.teacher-card{
+    border-top:5px solid #7c3aed;
+}
+
+/* COMBINED */
+
+.combined-card{
+    background:white;
+    margin-top:30px;
+    padding:35px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 7px 25px rgba(0,0,0,0.1);
+}
+
+.combined-card h2{
+    color:#1e3a8a;
+    margin-bottom:15px;
+}
+
+.combined-score{
+    font-size:60px;
+    font-weight:bold;
+    color:#2563eb;
+    margin:10px;
+}
+
+.performance{
+    display:inline-block;
+    padding:10px 25px;
+    background:#dbeafe;
+    color:#1d4ed8;
+    border-radius:20px;
+    font-weight:bold;
+    font-size:18px;
+}
+
+/* DETAILS */
+
+.details{
+    margin-top:25px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.detail-card{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    text-align:center;
+    box-shadow:0 5px 20px rgba(0,0,0,0.07);
+}
+
+.detail-card h3{
+    color:#64748b;
+    font-size:15px;
+}
+
+.detail-value{
+    font-size:25px;
+    font-weight:bold;
+    color:#1e3a8a;
+    margin-top:8px;
+}
+
+/* RECOMMENDATIONS */
+
+.recommendations{
+    margin-top:30px;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.07);
+}
+
+.recommendations h2{
+    color:#1e3a8a;
+    margin-bottom:20px;
+}
+
+.recommendations li{
+    padding:10px;
+    margin-bottom:5px;
+}
+
+/* BUTTONS */
+
+.buttons{
+    text-align:center;
+    margin-top:30px;
+}
+
+.btn{
+    display:inline-block;
+    padding:12px 20px;
+    background:#2563eb;
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+    margin:5px;
+}
+
+.btn:hover{
+    background:#1d4ed8;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    .score-container{
+        grid-template-columns:1fr;
+    }
+
+    .details{
+        grid-template-columns:1fr;
+    }
+
+    .navbar{
+        flex-direction:column;
+        gap:15px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+    <div class="logo">
+        🎓 Student Performance System
+    </div>
+
+    <div>
+
+        <a href="http://127.0.0.1:5000/">
+            Home
+        </a>
+
+        <a href="http://127.0.0.1:5000/teacher-progress">
+            Progress
+        </a>
+
+        <a href="http://127.0.0.1:5000/teacher-recommendations">
+            Recommendations
+        </a>
+
+    </div>
+
+</div>
+
+
+<div class="container">
+
+
+    <!-- TITLE -->
+
+    <div class="title">
+
+        <h1>
+            📊 Combined Performance Result
+        </h1>
+
+        <p>
+            Student prediction and Teacher What-If analysis
+        </p>
+
+    </div>
+
+
+    <!-- STUDENT + TEACHER -->
+
+    <div class="score-container">
+
+
+        <!-- STUDENT -->
+
+        <div class="score-card student-card">
+
+            <h2>
+                👨‍🎓 Student Prediction
+            </h2>
+
+            <div class="score">
+                {{ student_score }}%
+            </div>
+
+            <p>
+                Actual Student Prediction
+            </p>
+
+        </div>
+
+
+        <!-- TEACHER -->
+
+        <div class="score-card teacher-card">
+
+            <h2>
+                👨‍🏫 Teacher What-If
+            </h2>
+
+            <div class="score">
+                {{ teacher_score }}%
+            </div>
+
+            <p>
+                Simulated Performance
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- COMBINED RESULT -->
+
+    <div class="combined-card">
+
+        <h2>
+            ⭐ Combined Performance Score
+        </h2>
+
+        <div class="combined-score">
+            {{ combined_score }}%
+        </div>
+
+        <div class="performance">
+            {{ combined_performance }}
+        </div>
+
+    </div>
+
+
+    <!-- DETAILS -->
+
+    <div class="details">
+
+
+        <div class="detail-card">
+
+            <h3>
+                Teacher Improvement
+            </h3>
+
+            <div class="detail-value">
+
+                {% if improvement >= 0 %}
+                    +{{ improvement }}%
+                {% else %}
+                    {{ improvement }}%
+                {% endif %}
+
+            </div>
+
+        </div>
+
+
+        <div class="detail-card">
+
+            <h3>
+                Difference
+            </h3>
+
+            <div class="detail-value">
+                {{ difference }}%
+            </div>
+
+        </div>
+
+
+        <div class="detail-card">
+
+            <h3>
+                Performance
+            </h3>
+
+            <div class="detail-value">
+                {{ combined_performance }}
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- RECOMMENDATIONS -->
+
+    <div class="recommendations">
+
+        <h2>
+            💡 Combined Recommendations
+        </h2>
+
+        <ul>
+
+            {% for recommendation in recommendations %}
+
+            <li>
+                {{ recommendation }}
+            </li>
+
+            {% endfor %}
+
+        </ul>
+
+    </div>
+
+
+    <!-- BUTTONS -->
+
+    <div class="buttons">
+
+        <a class="btn"
+           href="http://127.0.0.1:5000/">
+
+            Student Home
+
+        </a>
+
+        <a class="btn"
+           href="http://127.0.0.1:5000/teacher-dashboard">
+
+            Teacher Dashboard
+
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

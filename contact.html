@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Contact Us - Student Performance Prediction</title>
+
+<style>
+
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+/* =========================
+   BODY
+========================= */
+
+body{
+    font-family:Arial, sans-serif;
+    background:#f4f8ff;
+    color:#172554;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+nav{
+
+    height:72px;
+
+    background:#063b91;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 35px;
+
+    color:white;
+}
+
+
+/* LOGO */
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+}
+
+
+.logo-icon{
+
+    font-size:29px;
+
+}
+
+
+/* NAV LINKS */
+
+.nav-links{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:28px;
+
+}
+
+
+.nav-links a{
+
+    color:white;
+
+    text-decoration:none;
+
+    font-size:15px;
+
+    padding:8px 0;
+
+    position:relative;
+
+}
+
+
+.nav-links a:hover{
+
+    color:#dbeafe;
+
+}
+
+
+/* ACTIVE CONTACT */
+
+.nav-links .active::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    right:0;
+
+    bottom:-8px;
+
+    height:3px;
+
+    background:white;
+
+    border-radius:5px;
+
+}
+
+
+/* LOGOUT */
+
+.logout{
+
+    border:1px solid white;
+
+    padding:8px 16px !important;
+
+    border-radius:7px;
+
+}
+
+
+/* =========================
+   CONTACT CONTAINER
+========================= */
+
+.contact-section{
+
+    width:90%;
+
+    max-width:1250px;
+
+    margin:55px auto;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:55px;
+
+    align-items:center;
+
+}
+
+
+/* =========================
+   LEFT SECTION
+========================= */
+
+.contact-left{
+
+    padding:20px;
+
+}
+
+
+.contact-left h1{
+
+    font-size:55px;
+
+    color:#102f72;
+
+    margin-bottom:18px;
+
+}
+
+
+.title-line{
+
+    width:90px;
+
+    height:5px;
+
+    background:#2563eb;
+
+    border-radius:5px;
+
+    margin-bottom:22px;
+
+    position:relative;
+
+}
+
+
+.title-line::after{
+
+    content:"";
+
+    position:absolute;
+
+    right:-15px;
+
+    top:-2px;
+
+    width:9px;
+
+    height:9px;
+
+    background:#2563eb;
+
+    border-radius:50%;
+
+}
+
+
+.contact-left > p{
+
+    font-size:18px;
+
+    color:#475569;
+
+    line-height:1.7;
+
+    margin-bottom:30px;
+
+    max-width:500px;
+
+}
+
+
+/* =========================
+   CONTACT ILLUSTRATION
+========================= */
+
+.illustration{
+
+    width:100%;
+
+    height:250px;
+
+    background:#eaf3ff;
+
+    border-radius:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+
+.person{
+
+    font-size:120px;
+
+}
+
+
+.laptop{
+
+    font-size:75px;
+
+    margin-left:-20px;
+
+}
+
+
+/* =========================
+   CONTACT DETAILS
+========================= */
+
+.contact-details{
+
+    margin-top:25px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+
+.detail{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+
+.detail-icon{
+
+    width:45px;
+
+    height:45px;
+
+    border-radius:50%;
+
+    background:#2563eb;
+
+    color:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:21px;
+
+}
+
+
+.detail-text h3{
+
+    font-size:15px;
+
+    color:#172554;
+
+    margin-bottom:3px;
+
+}
+
+
+.detail-text p{
+
+    font-size:14px;
+
+    color:#64748b;
+
+}
+
+
+/* =========================
+   FORM CARD
+========================= */
+
+.contact-form{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:15px;
+
+    box-shadow:0 10px 30px rgba(30,58,138,.12);
+
+}
+
+
+.contact-form h2{
+
+    font-size:22px;
+
+    color:#172554;
+
+    margin-bottom:25px;
+
+}
+
+
+/* LABEL */
+
+.form-group{
+
+    margin-bottom:17px;
+
+}
+
+
+.form-group label{
+
+    display:block;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    color:#172554;
+
+    margin-bottom:7px;
+
+}
+
+
+/* INPUT */
+
+.form-group input,
+.form-group textarea{
+
+    width:100%;
+
+    padding:12px 13px;
+
+    border:1px solid #d5deed;
+
+    border-radius:6px;
+
+    font-family:Arial,sans-serif;
+
+    font-size:14px;
+
+    outline:none;
+
+    transition:.2s;
+
+}
+
+
+.form-group input:focus,
+.form-group textarea:focus{
+
+    border-color:#2563eb;
+
+    box-shadow:0 0 0 3px rgba(37,99,235,.08);
+
+}
+
+
+.form-group textarea{
+
+    height:105px;
+
+    resize:none;
+
+}
+
+
+/* =========================
+   SEND BUTTON
+========================= */
+
+.send-btn{
+
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:6px;
+
+    background:#1769e0;
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+.send-btn:hover{
+
+    background:#1255ba;
+
+    transform:translateY(-1px);
+
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+
+    background:#063b91;
+
+    color:white;
+
+    text-align:center;
+
+    padding:18px;
+
+    margin-top:30px;
+
+    font-size:14px;
+
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+
+    nav{
+
+        height:auto;
+
+        padding:18px;
+
+        flex-direction:column;
+
+        gap:15px;
+
+    }
+
+
+    .nav-links{
+
+        flex-wrap:wrap;
+
+        justify-content:center;
+
+        gap:15px;
+
+    }
+
+
+    .contact-section{
+
+        grid-template-columns:1fr;
+
+        margin-top:30px;
+
+    }
+
+
+    .contact-left{
+
+        text-align:center;
+
+    }
+
+
+    .contact-left > p{
+
+        margin-left:auto;
+
+        margin-right:auto;
+
+    }
+
+
+    .title-line{
+
+        margin-left:auto;
+
+        margin-right:auto;
+
+    }
+
+
+}
+
+
+@media(max-width:600px){
+
+    .contact-left h1{
+
+        font-size:42px;
+
+    }
+
+
+    .contact-left > p{
+
+        font-size:16px;
+
+    }
+
+
+    .contact-form{
+
+        padding:22px;
+
+    }
+
+
+    .illustration{
+
+        height:200px;
+
+    }
+
+
+    .person{
+
+        font-size:90px;
+
+    }
+
+
+    .laptop{
+
+        font-size:55px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav>
+
+
+<div class="logo">
+
+<span class="logo-icon">🎓</span>
+
+<span>
+Student Performance Prediction
+</span>
+
+</div>
+
+
+<div class="nav-links">
+
+
+<a href="http://127.0.0.1:5000/">
+Home
+</a>
+
+
+<a href="http://127.0.0.1:5000/predict">
+Predict
+</a>
+
+
+<a href="http://127.0.0.1:5000/history">
+History
+</a>
+
+
+<a href="http://127.0.0.1:5000/dashboard">
+Dashboard
+</a>
+
+
+<a href="http://127.0.0.1:5000/feedback">
+Feedback
+</a>
+
+
+<a href="http://127.0.0.1:5000/about">
+About Us
+</a>
+
+
+<a href="http://127.0.0.1:5000/contact"
+   class="active">
+Contact Us
+</a>
+
+
+<a href="http://127.0.0.1:5000/logout"
+   class="logout">
+Logout
+</a>
+
+
+</div>
+
+</nav>
+
+
+
+<!-- =========================
+     CONTACT SECTION
+========================= -->
+
+<section class="contact-section">
+
+
+<!-- =========================
+     LEFT CONTENT
+========================= -->
+
+<div class="contact-left">
+
+
+<h1>
+Contact Us
+</h1>
+
+
+<div class="title-line"></div>
+
+
+<p>
+
+We are here to help! Reach out to us
+for any queries, support, or
+suggestions.
+
+</p>
+
+
+
+<!-- ILLUSTRATION -->
+
+<div class="illustration">
+
+<div class="person">
+👩‍💻
+</div>
+
+<div class="laptop">
+💻
+</div>
+
+</div>
+
+
+
+<!-- CONTACT DETAILS -->
+
+<div class="contact-details">
+
+
+<div class="detail">
+
+<div class="detail-icon">
+📞
+</div>
+
+<div class="detail-text">
+
+<h3>
+Phone
+</h3>
+
+<p>
++91 98765 43210
+</p>
+
+</div>
+
+</div>
+
+
+
+<div class="detail">
+
+<div class="detail-icon">
+✉️
+</div>
+
+<div class="detail-text">
+
+<h3>
+Email
+</h3>
+
+<p>
+support@studentperformance.com
+</p>
+
+</div>
+
+</div>
+
+
+
+<div class="detail">
+
+<div class="detail-icon">
+📍
+</div>
+
+<div class="detail-text">
+
+<h3>
+Address
+</h3>
+
+<p>
+Maharashtra, India
+</p>
+
+</div>
+
+</div>
+
+
+
+<div class="detail">
+
+<div class="detail-icon">
+🕐
+</div>
+
+<div class="detail-text">
+
+<h3>
+Office Hours
+</h3>
+
+<p>
+Monday - Saturday : 9:00 AM - 6:00 PM
+</p>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- =========================
+     RIGHT FORM
+========================= -->
+
+<div class="contact-form">
+
+
+<h2>
+Send Us a Message
+</h2>
+
+
+<form
+action="http://127.0.0.1:5000/contact"
+method="POST">
+
+
+<!-- NAME -->
+
+<div class="form-group">
+
+<label>
+Your Name
+</label>
+
+<input
+type="text"
+name="name"
+placeholder="Enter your name"
+required>
+
+</div>
+
+
+
+<!-- EMAIL -->
+
+<div class="form-group">
+
+<label>
+Email Address
+</label>
+
+<input
+type="email"
+name="email"
+placeholder="Enter your email"
+required>
+
+</div>
+
+
+
+<!-- SUBJECT -->
+
+<div class="form-group">
+
+<label>
+Subject
+</label>
+
+<input
+type="text"
+name="subject"
+placeholder="Enter subject"
+required>
+
+</div>
+
+
+
+<!-- MESSAGE -->
+
+<div class="form-group">
+
+<label>
+Message
+</label>
+
+<textarea
+name="message"
+placeholder="Type your message here..."
+required></textarea>
+
+</div>
+
+
+
+<!-- BUTTON -->
+
+<button
+type="submit"
+class="send-btn">
+
+✈️ Send Message
+
+</button>
+
+
+</form>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+© 2026 Student Performance Prediction System
+
+</footer>
+
+
+</body>
+
+</html>

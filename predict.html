@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Personal Prediction</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f1f5f9;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+        }
+
+        .box {
+            width: 100%;
+            max-width: 650px;
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            text-align: center;
+            color: #0f172a;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+            color: #334155;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            margin-bottom: 20px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #2563eb;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .note {
+            margin-bottom: 25px;
+            padding: 14px;
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            color: #1e3a8a;
+            border-radius: 8px;
+            line-height: 1.5;
+        }
+
+        .error {
+            margin-bottom: 20px;
+            padding: 12px;
+            background: #fee2e2;
+            color: #991b1b;
+            border-radius: 8px;
+        }
+
+        .success {
+            margin-bottom: 20px;
+            padding: 12px;
+            background: #dcfce7;
+            color: #166534;
+            border-radius: 8px;
+        }
+
+        .back {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+    <h1>🎓 Student Performance Prediction</h1>
+
+    <p class="subtitle">
+        Personal Performance Prediction
+    </p>
+
+    <div class="note">
+
+        This student prediction uses only personal
+        performance information.
+
+        <br><br>
+
+        <b>Personal Fields:</b><br>
+
+        Study Hours, Attendance, Sleep Hours,
+        Internet Usage
+
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+
+        {% if messages %}
+
+            {% for category, message in messages %}
+
+                {% if category == "success" %}
+
+                    <div class="success">
+                        {{ message }}
+                    </div>
+
+                {% else %}
+
+                    <div class="error">
+                        {{ message }}
+                    </div>
+
+                {% endif %}
+
+            {% endfor %}
+
+        {% endif %}
+
+    {% endwith %}
+
+
+    <form action="http://127.0.0.1:5000/predict" method="POST">
+
+        <label>
+            Student ID
+        </label>
+
+        <input
+            type="text"
+            name="student_id"
+            placeholder="Enter Student ID"
+            required
+        >
+
+
+        <label>
+            Student Name
+        </label>
+
+        <input
+            type="text"
+            name="student_name"
+            placeholder="Enter Student Name"
+            required
+        >
+
+
+        <label>
+            Study Hours Per Day
+        </label>
+
+        <input
+            type="number"
+            name="study_hours"
+            step="0.1"
+            min="0"
+            max="24"
+            placeholder="Example: 5"
+            required
+        >
+
+
+        <label>
+            Attendance (%)
+        </label>
+
+        <input
+            type="number"
+            name="attendance"
+            step="0.1"
+            min="0"
+            max="100"
+            placeholder="Example: 85"
+            required
+        >
+
+
+        <label>
+            Sleep Hours Per Day
+        </label>
+
+        <input
+            type="number"
+            name="sleep_hours"
+            step="0.1"
+            min="0"
+            max="24"
+            placeholder="Example: 7"
+            required
+        >
+
+
+        <label>
+            Internet Usage Hours Per Day
+        </label>
+
+        <input
+            type="number"
+            name="internet_usage"
+            step="0.1"
+            min="0"
+            max="24"
+            placeholder="Example: 3"
+            required
+        >
+
+
+        <button type="submit">
+            🔮 Predict Personal Performance
+        </button>
+
+    </form>
+
+
+    <div class="back">
+
+        <a href="http://127.0.0.1:5000/dashboard">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

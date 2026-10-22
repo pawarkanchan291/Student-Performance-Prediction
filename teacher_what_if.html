@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Teacher What-If Prediction</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f1f5f9;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 260px;
+    background: linear-gradient(
+        180deg,
+        #0f172a,
+        #1e3a8a
+    );
+    padding: 25px 15px;
+    color: white;
+}
+
+.logo {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.logo span {
+    display: block;
+    font-size: 13px;
+    font-weight: normal;
+}
+
+.menu a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 14px;
+    margin: 5px 0;
+    border-radius: 8px;
+}
+
+.menu a:hover,
+.menu .active {
+    background: #2563eb;
+}
+
+.main {
+    flex: 1;
+}
+
+.topbar {
+    height: 70px;
+    background: white;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 30px;
+    color: #334155;
+    font-weight: bold;
+}
+
+.content {
+    padding: 35px;
+}
+
+.form-box {
+    max-width: 650px;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+h1 {
+    color: #0f172a;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #64748b;
+    margin-bottom: 25px;
+}
+
+.info-box {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    color: #1e3a8a;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: bold;
+    color: #334155;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    margin-bottom: 18px;
+    background: white;
+    font-size: 15px;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+.result {
+    margin-top: 25px;
+    padding: 25px;
+    background: #dbeafe;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid #93c5fd;
+}
+
+.result h2 {
+    color: #1e3a8a;
+    margin-bottom: 10px;
+}
+
+.score {
+    font-size: 40px;
+    font-weight: bold;
+    color: #2563eb;
+    margin: 10px;
+}
+
+.performance {
+    font-size: 20px;
+    font-weight: bold;
+    color: #0f172a;
+}
+
+.error {
+    margin-bottom: 20px;
+    padding: 12px;
+    background: #fee2e2;
+    color: #991b1b;
+    border-radius: 8px;
+}
+
+.success {
+    margin-bottom: 20px;
+    padding: 12px;
+    background: #dcfce7;
+    color: #166534;
+    border-radius: 8px;
+}
+
+@media(max-width: 800px) {
+
+    .sidebar {
+        width: 210px;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+}
+
+@media(max-width: 600px) {
+
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- SIDEBAR -->
+
+    <div class="sidebar">
+
+        <div class="logo">
+
+            🎓 Student Performance
+
+            <span>
+                Prediction System
+            </span>
+
+        </div>
+
+
+        <div class="menu">
+
+            <a href="http://127.0.0.1:5000/teacher-dashboard">
+                🏠 Dashboard
+            </a>
+
+            <a
+                href="http://127.0.0.1:5000/teacher-what-if"
+                class="active"
+            >
+                🔄 What-If Prediction
+            </a>
+
+            <a href="http://127.0.0.1:5000/teacher-recommendations">
+                💡 Recommendations
+            </a>
+
+            <a href="http://127.0.0.1:5000/teacher-progress">
+                📈 Progress
+            </a>
+
+            <a href="http://127.0.0.1:5000/teacher-reports">
+                📑 Teacher Reports
+            </a>
+
+            <a href="http://127.0.0.1:5000/teacher-logout">
+                🚪 Logout
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- MAIN -->
+
+    <div class="main">
+
+
+        <!-- TOPBAR -->
+
+        <div class="topbar">
+
+            👤 {{ teacher_name }}
+
+        </div>
+
+
+        <!-- CONTENT -->
+
+        <div class="content">
+
+
+            <h1>
+                🔄 Teacher Academic What-If
+            </h1>
+
+
+            <p class="subtitle">
+                Predict student performance using academic records.
+            </p>
+
+
+            <div class="form-box">
+
+
+                <div class="info-box">
+
+                    <b>Teacher Academic Prediction</b>
+
+                    <br>
+
+                    This form uses only academic information.
+
+                    <br><br>
+
+                    <b>Academic Fields:</b>
+
+                    Student ID,
+                    Student Name,
+                    Assignments Completed,
+                    Previous Score
+
+                </div>
+
+
+                <!-- FLASH MESSAGE -->
+
+                {% with messages =
+                    get_flashed_messages(
+                        with_categories=true
+                    )
+                %}
+
+                    {% if messages %}
+
+                        {% for category, message in messages %}
+
+                            {% if category == "success" %}
+
+                                <div class="success">
+                                    {{ message }}
+                                </div>
+
+                            {% else %}
+
+                                <div class="error">
+                                    {{ message }}
+                                </div>
+
+                            {% endif %}
+
+                        {% endfor %}
+
+                    {% endif %}
+
+                {% endwith %}
+
+
+                <!-- FORM -->
+
+                <form
+                    method="POST"
+                    action="http://127.0.0.1:5000/teacher-what-if"
+                >
+
+
+                    <!-- STUDENT ID -->
+
+                    <label>
+                        Student ID
+                    </label>
+
+                    <input
+                        type="text"
+                        name="student_id"
+                        placeholder="Enter Student ID"
+                        value="{{ values.student_id if values else '' }}"
+                        required
+                    >
+
+
+                    <!-- STUDENT NAME -->
+
+                    <label>
+                        Student Name
+                    </label>
+
+                    <input
+                        type="text"
+                        name="student_name"
+                        placeholder="Enter Student Name"
+                        value="{{ values.student_name if values else '' }}"
+                        required
+                    >
+
+
+                    <!-- ASSIGNMENTS -->
+
+                    <label>
+                        Assignments Completed
+                    </label>
+
+                    <input
+                        type="number"
+                        name="assignments_completed"
+                        step="1"
+                        min="0"
+                        placeholder="Example: 8"
+                        value="{{ values.assignments_completed if values else '' }}"
+                        required
+                    >
+
+
+                    <!-- PREVIOUS SCORE -->
+
+                    <label>
+                        Previous Score (%)
+                    </label>
+
+                    <input
+                        type="number"
+                        name="previous_score"
+                        step="0.1"
+                        min="0"
+                        max="100"
+                        placeholder="Example: 75"
+                        value="{{ values.previous_score if values else '' }}"
+                        required
+                    >
+
+
+                    <button type="submit">
+
+                        🔮 Predict Academic Performance
+
+                    </button>
+
+                </form>
+
+
+                <!-- RESULT -->
+
+                {% if prediction is not none %}
+
+                    <div class="result">
+
+                        <h2>
+                            Prediction Result
+                        </h2>
+
+                        <div class="score">
+
+                            {{ prediction }}%
+
+                        </div>
+
+                        <div class="performance">
+
+                            Performance:
+                            {{ performance }}
+
+                        </div>
+
+                    </div>
+
+                {% endif %}
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</body>
+
+</html>
